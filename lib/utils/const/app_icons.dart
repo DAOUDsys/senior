@@ -7,5 +7,6 @@ class AppIcons {
   static const String data = 'assets/data.svg';
   static const String staff = 'assets/people.svg';
   static const String settings = 'assets/settings.svg';
+  static const String theme = 'assets/theme.svg';
 
 }

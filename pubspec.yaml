@@ -38,6 +38,12 @@ dependencies:
   url_launcher: ^6.1.5
   #SVG
   flutter_svg: ^1.1.4
+  #provider
+  provider: ^6.0.3
+  #shared preferences
+  shared_preferences: ^2.0.15
+  #web view
+  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_test:

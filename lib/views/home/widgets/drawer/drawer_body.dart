@@ -16,7 +16,7 @@ class DrawerBody extends StatelessWidget {
           // part A
           const DrawerA(),
           //line
-          Divider(color: AppThemeChoose.getMode()? Colors.white:Colors.black,),
+          Divider(color: AppThemeChoose.getMode(context)? Colors.white:Colors.black,),
           //part B 
           const DrawerB(),
 

@@ -30,7 +30,7 @@ class SingIn extends StatelessWidget {
               Expanded(
                 child: Container(
                   decoration:  BoxDecoration(
-                    color: AppThemeChoose.getMode()? AppColors.main_dark: AppColors.main_light,///color of expanded
+                    color: AppThemeChoose.getMode(context)? AppColors.main_dark: AppColors.main_light,///color of expanded
                     boxShadow: [BoxShadow(
                       color: AppColors.shadow_textbox_dark,
                       blurRadius: 50,
@@ -53,11 +53,11 @@ class SingIn extends StatelessWidget {
                          Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: AppThemeChoose.getMode()? AppColors.textbox_dark:AppColors.textbox_light,
+                            color: AppThemeChoose.getMode(context)? AppColors.textbox_dark:AppColors.textbox_light,
                             borderRadius: BorderRadius.circular(36),
                             boxShadow: [BoxShadow(
                                color: AppColors.shadow_textbox_dark,
-                               blurRadius:AppThemeChoose.getMode()? 50:30,
+                               blurRadius:AppThemeChoose.getMode(context)? 50:30,
                                offset: const Offset(0,10)
                     )]
                           ),
@@ -81,11 +81,11 @@ class SingIn extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: AppThemeChoose.getMode()? AppColors.textbox_dark:AppColors.textbox_light,
+                            color: AppThemeChoose.getMode(context)? AppColors.textbox_dark:AppColors.textbox_light,
                             borderRadius: BorderRadius.circular(36),
                             boxShadow:  [BoxShadow(
                                color: AppColors.shadow_textbox_dark,
-                               blurRadius: AppThemeChoose.getMode()? 50:30,
+                               blurRadius: AppThemeChoose.getMode(context)? 50:30,
                                offset: const Offset(0,10)
                     )]
                           ),
@@ -140,7 +140,7 @@ class SingIn extends StatelessWidget {
                           children:  <Widget>[
                              const Text("Don't have an account? ",style: TextStyle(fontSize: 18),),
                              TextButton(onPressed: () {}, 
-                             child: Text("Register instead", style: TextStyle(fontSize: 20,color: AppThemeChoose.getMode()? AppColors.part_dark: AppColors.part_light,))
+                             child: Text("Register instead", style: TextStyle(fontSize: 20,color: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,))
                              )
                           ],
                         )

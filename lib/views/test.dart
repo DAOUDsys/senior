@@ -21,7 +21,7 @@ class MyTest extends StatelessWidget {
           const Text("Name App"),
           Row(
             children: [
-              Expanded(child: ElevatedButton(onPressed: (){dev.log(AppThemeChoose.getMode()? "dark mode is on":"dark mode is of" );}, child: const Text("check mode"))),
+              Expanded(child: ElevatedButton(onPressed: (){dev.log(AppThemeChoose.getMode(context)? "dark mode is on":"dark mode is of" );}, child: const Text("check mode"))),
               Expanded(child: ElevatedButton(onPressed: (){Navigator.pushNamed(context, "/singin");}, child: const Text("go back"))),
             ],
           )

@@ -1,13 +1,19 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:developer' as dev;
 
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shelves_sys/utils/const/app_icons.dart';
+import 'package:shelves_sys/utils/imports/app_imports.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'app_imports.dart';
 
 //screens
 part '../../views/test.dart';
@@ -35,3 +41,4 @@ part '../../views/home/widgets/drawer/drawer_b_component.dart';
 part '../../views/home/widgets/drawer/drawer_theme_switch.dart';
 part '../../components/web-view/app_webview.dart';
 part '../../components/inner_page/inner_page_term.dart';
+part '../../components/loading/enum_loading.dart';

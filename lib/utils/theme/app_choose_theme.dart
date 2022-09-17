@@ -6,12 +6,19 @@ class AppThemeChoose {
   
   
   //check is dark or not
-  static bool getMode(/*BuildContext context*/)
+  static bool getModeLess()
   {
     var brightness = SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode =  brightness == Brightness.dark;
     return isDarkMode;
   }
+  static bool getMode(BuildContext context)
+  {
+   var brightness = MediaQuery.of(context).platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
+    return isDarkMode;
+  }
+
 
   //light theme
   static ThemeData DarkTheme(BuildContext context) {

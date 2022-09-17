@@ -10,11 +10,26 @@ class AppWebView extends StatefulWidget {
 
 
 class _AppWebViewState extends State<AppWebView> {
+  bool isLoading = true;
+
+
   @override
   Widget build(BuildContext context) {
-    return WebView(
+    return Stack(
+      children: [
+        WebView(
       initialUrl: widget.url,
       javascriptMode: JavascriptMode.unrestricted,
+      onPageFinished: (finish) {
+        setState (() {
+          isLoading=false;
+        });
+      },
+    ),
+    if(isLoading)
+    const AppLoading(loading: ChoiceLoading.webView,),
+      ],
     );
+    
   }
 }

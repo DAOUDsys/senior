@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "shelf system",
       initialRoute: "/",
-      routes: appRoutes.route,
+      routes: AppRoutes.route,
       theme: AppThemeChoose.lightTheme(context),
       darkTheme: AppThemeChoose.DarkTheme(context),
       //themeMode: manageTheme.themeMode,

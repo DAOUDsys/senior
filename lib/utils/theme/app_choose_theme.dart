@@ -21,6 +21,7 @@ class AppThemeChoose {
 
 
   //light theme
+  // ignore: non_constant_identifier_names
   static ThemeData DarkTheme(BuildContext context) {
     return ThemeData.dark().copyWith(
       //backgroundColor: AppColors.part_dark,
@@ -54,6 +55,7 @@ class AppThemeChoose {
     return ThemeData.light().copyWith(
       backgroundColor: AppColors.part_light,
       primaryColor: AppColors.main_light,
+      splashColor: AppColors.part_light,
       scaffoldBackgroundColor: AppColors.part_light,
       iconTheme: IconThemeData(color: AppColors.part_light),
       colorScheme: ThemeData().colorScheme.copyWith(

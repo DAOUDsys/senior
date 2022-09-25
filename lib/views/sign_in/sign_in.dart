@@ -1,5 +1,6 @@
 part of '../../utils/imports/app_imports.dart';
 
+// ignore: use_key_in_widget_constructors
 class SingIn extends StatelessWidget {
   
   @override
@@ -97,7 +98,7 @@ class SingIn extends StatelessWidget {
                                   decoration: InputDecoration(
                                   hintText: 'Password',
                                   suffixIcon: Icon(Icons.key , color: AppColors.main_dark,),
-                                  hintStyle: const TextStyle(/*color: AppColors.white_dark,*/fontSize: 20,fontWeight: FontWeight.bold),
+                                  hintStyle: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
                                   border: InputBorder.none,
                                 ),
                               )
@@ -135,7 +136,7 @@ class SingIn extends StatelessWidget {
                           ),
                    
                         const SizedBox(height: 20,),
-                        //registet insted
+                        //register instead
                         Row(
                           children:  <Widget>[
                              const Text("Don't have an account? ",style: TextStyle(fontSize: 18),),

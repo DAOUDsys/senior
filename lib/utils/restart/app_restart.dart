@@ -12,6 +12,7 @@ class  AppRestart  extends StatefulWidget {
 }
 
 class _AppRestart extends State<AppRestart> {
+  // ignore: unused_field
   Key _key=UniqueKey();
   //restart app
   void restartApp() {

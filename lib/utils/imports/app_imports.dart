@@ -1,8 +1,11 @@
 //import 'dart:js';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:developer' as dev;
+
 
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -10,15 +13,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shelves_sys/utils/const/app_icons.dart';
-import 'package:shelves_sys/utils/imports/app_imports.dart';
+//import 'package:shelves_sys/utils/imports/app_imports.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'app_imports.dart';
+//import 'app_imports.dart';
 
 //screens
 part '../../views/test.dart';
 part '../../views/sign_in/sign_in.dart';
 part '../../views/app_splash.dart';
+part '../../views/shelves list/shelves_list.dart';
+part '../../views/connection/connect.dart';
 //route
 part '../routes/app_routes.dart';
 //theme
@@ -33,7 +38,6 @@ part '../restart/app_restart.dart';
 //manage state
 part '../../manage-state/manage_theme.dart';
 //components
-part '../../views/home/widgets/appbar_home.dart'; 
 part '../../views/home/widgets/drawer/drawer_body.dart';
 part '../../views/home/widgets/drawer/drawer_a.dart';
 part '../../views/home/widgets/drawer/drawer_b.dart';
@@ -42,3 +46,5 @@ part '../../views/home/widgets/drawer/drawer_theme_switch.dart';
 part '../../components/web-view/app_webview.dart';
 part '../../components/inner_page/inner_page_term.dart';
 part '../../components/loading/enum_loading.dart';
+part '../../views/shelves list/gridview_shelves.dart';
+part '../../views/shelves list/shelf_card.dart';

@@ -5,5 +5,7 @@ class AppRoutes{
     "/":(context) => const PageSplash(),
     "/singin":(context) => SingIn(),
     "/test":(context) => const MyTest(),
+    "/shelves":(context) => const ShelvesList(),
+    "/connect":(context) => const Connect(), 
   };
 }

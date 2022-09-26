@@ -1,10 +1,11 @@
 part of '../../utils/imports/app_imports.dart';
 
-
-
-class ShelvesList extends StatelessWidget {
-  const ShelvesList({Key? key}) : super(key: key);
-
+// ignore: must_be_immutable
+class PageList extends StatelessWidget {
+   PageList({Key? key,required this.title,required this.cardAspectRatio, required this.card}) : super(key: key);
+    String title;
+    double cardAspectRatio;
+    Widget card;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +15,7 @@ class ShelvesList extends StatelessWidget {
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
           elevation: 0,
-          title: const Text("Your shelves",style: TextStyle(fontSize: 28),),
+          title: const Text("Staffs",style: TextStyle(fontSize: 28),),
           centerTitle: true,
           ),
           ),
@@ -22,23 +23,19 @@ class ShelvesList extends StatelessWidget {
       backgroundColor: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,
       //container that have the grid inside it and its the body
       body: Container(
-          //decoration of the main container
+          //decoration of main 
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(topLeft: Radius.circular(36) , topRight: Radius.circular(36)),
             color: AppThemeChoose.getMode(context)? AppColors.main_dark: AppColors.main_light,
             ),
 
           //child of the main container
-          child: const Padding(padding: EdgeInsets.only(top: 90),
-          child: GridShelf(),
+          child: Padding(padding: const EdgeInsets.only(top: 20),
+          child: Grid(cardAspectRatio: cardAspectRatio,card: card,),
           ),
 
-        )
-        
-        
-            
+        )  
         
     );
   }
 }
-

@@ -23,8 +23,11 @@ class MyTest extends StatelessWidget {
             children: [
               Expanded(child: ElevatedButton(onPressed: (){Navigator.pushNamed(context, "/connect");}, child: const Text("connect"))),
               Expanded(child: ElevatedButton(onPressed: (){Navigator.pushNamed(context, "/singin");}, child: const Text("go back"))),
+              Expanded(child: ElevatedButton(onPressed: (){Navigator.pushNamed(context, "/staff");}, child: const Text("staff"))),
             ],
-          )
+          ),
+              Expanded(child: ElevatedButton(onPressed: (){Navigator.pushNamed(context, "/notification");}, child: const Text("notifications"))),
+
           
 
 

@@ -22,7 +22,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 part '../../views/test.dart';
 part '../../views/sign_in/sign_in.dart';
 part '../../views/app_splash.dart';
-part '../../views/shelves list/shelves_list.dart';
+part '../../views/page list/page_list.dart';
 part '../../views/connection/connect.dart';
 //route
 part '../routes/app_routes.dart';
@@ -37,6 +37,10 @@ part '../const/app_images.dart';
 part '../restart/app_restart.dart';
 //manage state
 part '../../manage-state/manage_theme.dart';
+//cards
+part '../../components/cards/shelf_card.dart';
+part '../../components/cards/staff_card.dart';
+part '../../components/cards/simple_notification_card.dart';
 //components
 part '../../views/home/widgets/drawer/drawer_body.dart';
 part '../../views/home/widgets/drawer/drawer_a.dart';
@@ -46,5 +50,4 @@ part '../../views/home/widgets/drawer/drawer_theme_switch.dart';
 part '../../components/web-view/app_webview.dart';
 part '../../components/inner_page/inner_page_term.dart';
 part '../../components/loading/enum_loading.dart';
-part '../../views/shelves list/gridview_shelves.dart';
-part '../../views/shelves list/shelf_card.dart';
+part '../../components/grid_view/gridview.dart';

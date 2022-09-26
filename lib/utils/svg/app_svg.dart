@@ -1,7 +1,8 @@
 part of '../imports/app_imports.dart';
 
-class AppSvg {
   
+class AppSvg {
+  static BuildContext getContext (BuildContext context) =>context;
   static SvgPicture account = SvgPicture.asset(AppIcons.account, width: 45,height: 45,color: AppThemeChoose.getModeLess()? AppColors.part_dark :AppColors.part_light,);
   static SvgPicture logout = SvgPicture.asset(AppIcons.logout, width: 45,height: 45,color: AppThemeChoose.getModeLess()? AppColors.part_dark :AppColors.part_light,);
   static SvgPicture settings = SvgPicture.asset(AppIcons.settings, width: 45,height: 45,color: AppThemeChoose.getModeLess()? AppColors.part_dark :AppColors.part_light,);

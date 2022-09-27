@@ -51,61 +51,10 @@ class SingIn extends StatelessWidget {
                         // padding between login text and password text box
                         const SizedBox(height: 70,),
                         //Container for user name text box
-                         Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: AppThemeChoose.getMode(context)? AppColors.textbox_dark:AppColors.textbox_light,
-                            borderRadius: BorderRadius.circular(36),
-                            boxShadow: [BoxShadow(
-                               color: AppColors.shadow_textbox_dark,
-                               blurRadius:AppThemeChoose.getMode(context)? 50:30,
-                               offset: const Offset(0,10)
-                    )]
-                          ),
-                          child: Column(
-                            children: <Widget>[
-                               Padding(padding: const EdgeInsets.only(left: 20),
-                               child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: 'User name',
-                                  suffixIcon: Icon(Icons.person, color: AppColors.main_dark,),
-                                  hintStyle: const TextStyle(/*color: AppColors.white_dark,*/fontSize: 20,fontWeight: FontWeight.bold),
-                                  border: InputBorder.none,
-                                ),
-                              )
-                              )
-                            ],
-                          ),
-                        ),
+                         MyTextField(width: 400, height: 70,prefixIcon: const Icon(Icons.person,size: 25,),hint: "User name",),
                         const SizedBox(height: 25),
                         //Container for password text box
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: AppThemeChoose.getMode(context)? AppColors.textbox_dark:AppColors.textbox_light,
-                            borderRadius: BorderRadius.circular(36),
-                            boxShadow:  [BoxShadow(
-                               color: AppColors.shadow_textbox_dark,
-                               blurRadius: AppThemeChoose.getMode(context)? 50:30,
-                               offset: const Offset(0,10)
-                    )]
-                          ),
-                          child: Column(
-                            children:  <Widget>[
-                               Padding(padding: const EdgeInsets.only(left: 20),
-                               child: TextField(
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                  hintText: 'Password',
-                                  suffixIcon: Icon(Icons.key , color: AppColors.main_dark,),
-                                  hintStyle: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
-                                  border: InputBorder.none,
-                                ),
-                              )
-                              )
-                            ],
-                          ),
-                        ),
+                        MyTextField(width: 400, height: 70,prefixIcon: const Icon(Icons.person,size: 25,),hint: "Password",ispassword: true,),
                         //padding between password text box and remember me box
                         const SizedBox(height: 10,),
                           const Padding(padding: EdgeInsets.only(top: 40,left: 20),
@@ -140,7 +89,7 @@ class SingIn extends StatelessWidget {
                         Row(
                           children:  <Widget>[
                              const Text("Don't have an account? ",style: TextStyle(fontSize: 18),),
-                             TextButton(onPressed: () {}, 
+                             TextButton(onPressed: () {Navigator.pushNamed(context, "/newaccount");}, 
                              child: Text("Register instead", style: TextStyle(fontSize: 20,color: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,))
                              )
                           ],
@@ -158,9 +107,3 @@ class SingIn extends StatelessWidget {
   }
   
 }
-
-
-
-
-
-

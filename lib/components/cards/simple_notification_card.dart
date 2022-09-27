@@ -25,7 +25,7 @@ class SimpleNCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
-                Icon(Icons.notifications,size: 35,),
+                Icon(Icons.notifications_active_outlined,size: 35,),
                 SizedBox(
                   width: 280,
                 child: Text("the cake on shelf Z expires in a week",

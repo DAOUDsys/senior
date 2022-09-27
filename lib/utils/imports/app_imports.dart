@@ -24,6 +24,7 @@ part '../../views/sign_in/sign_in.dart';
 part '../../views/app_splash.dart';
 part '../../views/page list/page_list.dart';
 part '../../views/connection/connect.dart';
+part '../../views/new account/create_account.dart';
 //route
 part '../routes/app_routes.dart';
 //theme
@@ -51,3 +52,4 @@ part '../../components/web-view/app_webview.dart';
 part '../../components/inner_page/inner_page_term.dart';
 part '../../components/loading/enum_loading.dart';
 part '../../components/grid_view/gridview.dart';
+part '../../components/my textfield/my_textfield.dart';

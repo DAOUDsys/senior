@@ -30,7 +30,7 @@ class Connect extends StatelessWidget {
           child: Padding(padding:const EdgeInsets.only(top: 90),
           
             child: Center(
-              
+              // container that contain the textfield
               child: Container(
                 width: 380,
                 height: 300,
@@ -51,18 +51,24 @@ class Connect extends StatelessWidget {
                     //the text that shown in over the text filed 
                     const Text("Enter owner user name to connect",style: TextStyle(fontSize: 34,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
                     // size box to set width for text filed
-                    SizedBox(
+                    Container(
                       width: 300,
-                    child: TextField(
-                      style: const TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
+                      height: 70,
+                      decoration: BoxDecoration(
+                        color: AppThemeChoose.getMode(context)? AppColors.textbox_dark:AppColors.textbox_light,
+                        borderRadius: BorderRadius.circular(36),
+                        boxShadow:  [BoxShadow(
+                          color: AppColors.shadow_textbox_dark,
+                          blurRadius: AppThemeChoose.getMode(context)? 50:30,
+                          offset: const Offset(0,10)
+                        )]
+                      ),
+                    child: const TextField(
+                      style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
                       showCursor: false,
                       decoration: InputDecoration(
-                        prefix: const Text("  # ",style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold),),
-                        isDense: true,
-                        filled: true,
-                        fillColor: AppThemeChoose.getMode(context)? Colors.grey:Colors.white60,
-                        //border: InputBorder.none,
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(36)),
+                        prefix: Text("  # ",style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold),),
+                        border: InputBorder.none,
 
                       ),
                     ),

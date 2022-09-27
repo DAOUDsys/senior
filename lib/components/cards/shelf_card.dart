@@ -33,6 +33,11 @@ class ShelfCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(36) ,
           color: AppThemeChoose.getMode(context)? AppColors.textbox_dark: AppColors.textbox_light,
+          boxShadow:  [BoxShadow(
+            color: AppColors.shadow_textbox_dark,
+            blurRadius: AppThemeChoose.getMode(context)? 50:15,
+            offset: const Offset(0,10)
+          )]
         ),
         // ignore: sort_child_properties_last
         child: Column(

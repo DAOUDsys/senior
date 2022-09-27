@@ -30,7 +30,7 @@ class PageList extends StatelessWidget {
             ),
 
           //child of the main container
-          child: Padding(padding: const EdgeInsets.only(top: 20),
+          child: Padding(padding: const EdgeInsets.only(top: 10),
           child: Grid(cardAspectRatio: cardAspectRatio,card: card,),
           ),
 

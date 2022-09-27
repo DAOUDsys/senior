@@ -16,6 +16,12 @@ class StaffCard extends StatelessWidget {
           decoration: BoxDecoration(
           color: AppThemeChoose.getMode(context)? AppColors.textbox_dark: AppColors.textbox_light,
           borderRadius: BorderRadius.circular(50),
+          boxShadow:  [BoxShadow(
+            color: AppColors.shadow_textbox_dark,
+            blurRadius: AppThemeChoose.getMode(context)? 50:15,
+            offset: const Offset(0,10)
+          )]
+      
           ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

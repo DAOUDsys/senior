@@ -25,6 +25,7 @@ part '../../views/app_splash.dart';
 part '../../views/page list/page_list.dart';
 part '../../views/connection/connect.dart';
 part '../../views/new account/create_account.dart';
+part '../../views/edit shelf/shelf_settings.dart';
 //route
 part '../routes/app_routes.dart';
 //theme

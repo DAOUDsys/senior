@@ -6,7 +6,10 @@ class SingIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body:SingleChildScrollView(
+       child: Container(
+        //height to let container cover its space to let the SingleChildScrollView work well
+        height: 820,
         padding: const EdgeInsets.only(top: 55),
         width: double.infinity,
         /*decoration: BoxDecoration(
@@ -54,7 +57,7 @@ class SingIn extends StatelessWidget {
                          MyTextField(width: 400, height: 70,prefixIcon: const Icon(Icons.person,size: 25,),hint: "User name",),
                         const SizedBox(height: 25),
                         //Container for password text box
-                        MyTextField(width: 400, height: 70,prefixIcon: const Icon(Icons.person,size: 25,),hint: "Password",ispassword: true,),
+                        MyTextField(width: 400, height: 70,prefixIcon: const Icon(Icons.key,size: 25,),hint: "Password",ispassword: true,),
                         //padding between password text box and remember me box
                         const SizedBox(height: 10,),
                           const Padding(padding: EdgeInsets.only(top: 40,left: 20),
@@ -103,6 +106,7 @@ class SingIn extends StatelessWidget {
             ]
           ),
         ),
+      )
       );
   }
   

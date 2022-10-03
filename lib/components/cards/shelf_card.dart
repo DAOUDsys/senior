@@ -15,7 +15,9 @@ class ShelfCard extends StatelessWidget {
           children: [
             AppSvg.account,
             const Text("Shelf name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),  
-            IconButton(onPressed: () {}, icon: const Icon( Icons.mode_edit_outline_rounded)),
+            IconButton(
+              onPressed: () {Navigator.pushNamed(context, "/edit");},
+               icon: const Icon( Icons.mode_edit_outline_rounded)),
           ],
         ),
           Divider( color: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,

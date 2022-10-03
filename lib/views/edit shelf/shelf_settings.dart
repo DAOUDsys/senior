@@ -1,28 +1,29 @@
 part of '../../utils/imports/app_imports.dart';
 
-class NewAccount extends StatelessWidget {
-  const NewAccount({Key? key}) : super(key: key);
+class ShelfSettings extends StatelessWidget {
+  const ShelfSettings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset : false,
+      extendBody: true,
       drawer: const DrawerBody(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
           elevation: 0,
-          title: const Text("Sign up",style: TextStyle(fontSize: 28),),
+          title: const Text("Shelf settings",style: TextStyle(fontSize: 28),),
           centerTitle: true,
           ),
           ),
              // scaffold color is the same as appbar to let it seem like curves and the container has the opposite color
              backgroundColor: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,
+           // using singleChildScrollView to let the keyboard work well and don't cover or push the text fields in the page
+           body:SingleChildScrollView( 
             //container that have the grid inside it and its the body
-            
-                  
-            body:SingleChildScrollView( 
               child: Container(
+                //height to let container cover its space to let the SingleChildScrollView work well
               height: 700,
                //decoration of the main container
               decoration: BoxDecoration(
@@ -31,81 +32,82 @@ class NewAccount extends StatelessWidget {
                     ),
 
              //child of the main container
-            //  child: Padding(padding: const EdgeInsets.only(top: 30),
               child: Padding(
-                padding: const EdgeInsets.only(top:10,bottom: 10,left: 10,right: 10),                   
-                  child: Column(
+                padding: const EdgeInsets.only(top:10,bottom: 10,left: 10,right: 10),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Text("Create new account",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                    const Text("Edit shelf properties",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("First name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      const Text("Shelf name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.person))
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Last name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      const Text("Product name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.person),)
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Mobile",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      const Text("Weight",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.phone),)
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Email",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      const Text("Expire date",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.email),)
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Password",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      const Text("Price",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.key),)
                     ],
                   ),
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Password",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.key),)
-                    ],
-                  ),
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("User type",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,)
-                    ],
-                  ),
+                  
                   Padding(padding: const EdgeInsets.only(left: 200),
                   child: ElevatedButton(
                     onPressed: (){},
                     style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(150, 65),
+                      fixedSize: const Size(120, 50),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                       
                     ), 
-                    child: const Text("Create",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                    child: const Text("Edit",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                    )
+                  ),
+
+                  Padding(padding: const EdgeInsets.only(left: 200),
+                  child: ElevatedButton(
+                    onPressed: (){},
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(120, 50),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                      
+                    ), 
+                    child: const Text("Cancel",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
                     )
                   )
+
+
                 ]),
-                   
               )
+                  
+              
                 
               
         )
         
-            )
+           )
             
         
     );

@@ -27,12 +27,17 @@ class _PageSplashState extends State<PageSplash>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: AppThemeChoose.getMode(context)? AppColors.main_dark:AppColors.main_light,
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Text("five seconds"),
+            Icon(
+             Icons.shopping_cart_rounded,
+             size: 150,
+            ),
+            Text("Manage your shelves system",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,fontFamily: "Cursive"),),
           ]
         ),
       )

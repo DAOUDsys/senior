@@ -8,15 +8,15 @@ class DrawerB extends StatelessWidget {
     return Column(
       children: [
         //your shelves
-          DrawerBComponent(title: "Your shelves", icon: AppSvg.account, onTap: () {Navigator.pushNamed(context, "/shelves");},),
+          DrawerBComponent(title: "Your shelves", icon: AppSvg.account, onTap: () {Navigator.pushReplacementNamed(context, "/shelves");},),
         //analysis and suggestions
           DrawerBComponent(title: "Analysis and suggestions", icon: AppSvg.data),
         //staff management
-          DrawerBComponent(title: "Staff management", icon: AppSvg.staff),
+          DrawerBComponent(title: "Staff management", icon: AppSvg.staff, onTap: () {Navigator.pushReplacementNamed(context, "/staff");},),
         //theme
           //DrawerBComponent(title: "Theme", icon: AppSvg.theme, trailing: const DrawerTheme(), ),
         //notifications
-          DrawerBComponent(title: "Notifications", icon: AppSvg.notification),
+          DrawerBComponent(title: "Notifications", icon: AppSvg.notification, onTap: () {Navigator.pushReplacementNamed(context, "/notification");},),
         //settings
           DrawerBComponent(title: "Settings", icon: AppSvg.settings),
         //more information

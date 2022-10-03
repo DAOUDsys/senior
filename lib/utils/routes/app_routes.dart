@@ -10,5 +10,6 @@ class AppRoutes{
     "/shelves":(context) => PageList(title: "Your shelves", cardAspectRatio: 2,card: const ShelfCard(),),
     "/notification":(context) => PageList(title: "Notifications",cardAspectRatio: 2.7,card: SimpleNCard(interactive:true),),
     "/newaccount": (context) => const NewAccount(),
+    "/edit": (context) => const ShelfSettings(),
   };
 }

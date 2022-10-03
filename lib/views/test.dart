@@ -28,6 +28,7 @@ class MyTest extends StatelessWidget {
           ),
               Expanded(child: ElevatedButton(onPressed: (){Navigator.pushNamed(context, "/notification");}, child: const Text("notifications"))),
               Expanded(child: ElevatedButton(onPressed: (){Navigator.pushNamed(context, "/newaccount");}, child: const Text("create account"))),
+              Expanded(child: ElevatedButton(onPressed: (){Navigator.pushNamed(context, "/edit");}, child: const Text("Edit shelf"))),
 
           
 

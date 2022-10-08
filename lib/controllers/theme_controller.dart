@@ -1,6 +1,6 @@
 part of '../utils/imports/app_imports.dart';
 
-class ManageTheme extends ChangeNotifier{
+class ControllerTheme extends ChangeNotifier{
   /// [theme] false = light 
   /// [theme] true = dark
   bool theme=false;

@@ -3,9 +3,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
 import 'dart:developer' as dev;
-
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -37,8 +39,19 @@ part '../svg/app_svg.dart';
 part '../const/app_images.dart';
 //restart
 part '../restart/app_restart.dart';
-//manage state
-part '../../manage-state/manage_theme.dart';
+//API
+part '../../api/api_handel.dart';
+part '../../api/api.dart';
+// controllers
+part '../../controllers/api_controller.dart';
+part '../../controllers/theme_controller.dart';
+//models
+part '../../model/accounts/model_account.dart';
+part '../../model/accounts/model_account_list.dart';
+part '../../model/staffs/model_staff.dart';
+part '../../model/staffs/model_staff_list.dart';
+part '../../model/shelf-settings/model_shelf.dart';
+part '../../model/shelf-settings/model_shelf_list.dart';
 //cards
 part '../../components/cards/shelf_card.dart';
 part '../../components/cards/staff_card.dart';
@@ -54,3 +67,4 @@ part '../../components/inner_page/inner_page_term.dart';
 part '../../components/loading/enum_loading.dart';
 part '../../components/grid_view/gridview.dart';
 part '../../components/my textfield/my_textfield.dart';
+part '../../components/custom-toast/toast.dart';

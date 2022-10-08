@@ -24,7 +24,7 @@ class ShelfSettings extends StatelessWidget {
             //container that have the grid inside it and its the body
               child: Container(
                 //height to let container cover its space to let the SingleChildScrollView work well
-              height: 700,
+              height: MediaQuery.of(context).size.height,
                //decoration of the main container
               decoration: BoxDecoration(
                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(36) , topRight: Radius.circular(36)),

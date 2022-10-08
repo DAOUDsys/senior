@@ -18,7 +18,7 @@ class DrawerB extends StatelessWidget {
         //notifications
           DrawerBComponent(title: "Notifications", icon: AppSvg.notification, onTap: () {Navigator.pushReplacementNamed(context, "/notification");},),
         //settings
-          DrawerBComponent(title: "Settings", icon: AppSvg.settings),
+          DrawerBComponent(title: "Settings", icon: AppSvg.settings, onTap: () {CustomToast.toast("test", context);},),
         //more information
           DrawerBComponent(title: "About us", icon: AppSvg.information, 
           onTap: (){

@@ -14,10 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-    create: (context) => ManageTheme(),
+    create: (context) => ControllerTheme(),
     builder: (context, child) { 
       // provider theme
-      final ManageTheme manageTheme =Provider.of<ManageTheme>(context);
+      final ControllerTheme manageTheme =Provider.of<ControllerTheme>(context);
       // check theme
       manageTheme.sharedTheme();
       return MaterialApp(

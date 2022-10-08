@@ -48,6 +48,10 @@ dependencies:
   flutter_spinkit: ^5.1.0
   #awesome dialog
   awesome_dialog: ^3.0.1
+  # HTTP request
+  http: ^0.13.5
+  #flutter toast
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   flutter_test:

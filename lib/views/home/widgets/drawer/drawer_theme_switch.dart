@@ -6,7 +6,7 @@ class DrawerTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // provider theme
-    final ManageTheme manageTheme =Provider.of<ManageTheme>(context);
+    final ControllerTheme manageTheme =Provider.of<ControllerTheme>(context);
 
     //Provider
     return Switch(value: manageTheme.theme, 

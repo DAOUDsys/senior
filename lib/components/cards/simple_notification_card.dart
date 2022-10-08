@@ -12,7 +12,7 @@ class SimpleNCard extends StatelessWidget {
       
        child: Center(
         child: SizedBox(
-          width: 390,
+          width: MediaQuery.of(context).size.width-40,
           height: 150,
         child: Container(
           decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class SimpleNCard extends StatelessWidget {
                 Icon(Icons.notifications_active_outlined,size: 35,),
                 SizedBox(
                   width: 280,
-                child: Text("the cake on shelf Z expires in a week",
+                child: Text("the cake on shelf Z expires in a week ",
                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
                 textAlign: TextAlign.justify,
                 maxLines: 3,
@@ -47,7 +47,7 @@ class SimpleNCard extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(height: 30,),
             Divider( color: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,
           thickness: 2, 
           indent: 0,
@@ -56,6 +56,7 @@ class SimpleNCard extends StatelessWidget {
           if(interactive == true)
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextButton(
                 onPressed: () {},

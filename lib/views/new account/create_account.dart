@@ -23,7 +23,7 @@ class NewAccount extends StatelessWidget {
                   
             body:SingleChildScrollView( 
               child: Container(
-              height: 700,
+              height: MediaQuery.of(context).size.height,
                //decoration of the main container
               decoration: BoxDecoration(
                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(36) , topRight: Radius.circular(36)),
@@ -84,7 +84,13 @@ class NewAccount extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("User type",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,)
+                      // DropdownButton(items: const [
+                      //   DropdownMenuItem(value: false,child: Text("Owner"),),
+                      //   DropdownMenuItem(value: true,child: Text('Employee'),),
+                      // ], 
+                      // onChanged: onChanged,
+                      // iconEnabledColor: AppThemeChoose.getMode(context)? AppColors.part_dark:AppColors.part_light,
+                      // )
                     ],
                   ),
                   Padding(padding: const EdgeInsets.only(left: 200),

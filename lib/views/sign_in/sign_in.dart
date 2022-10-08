@@ -9,7 +9,7 @@ class SingIn extends StatelessWidget {
       body:SingleChildScrollView(
        child: Container(
         //height to let container cover its space to let the SingleChildScrollView work well
-        height: 820,
+        height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.only(top: 55),
         width: double.infinity,
         /*decoration: BoxDecoration(

@@ -7,11 +7,11 @@ class ModelNotificationList {
   ModelNotificationList({this.notification});
 
   ModelNotificationList.fromJson(Map<String,dynamic> json) 
-   { if(json['Notification'] != null) {
+   { if(json['notifications'] != null) {
       // initialize the list
       notification = <ModelNotification> [];
       // get the data from json to our model
-      json['Notification'].forEach((x) {
+      json['notifications'].forEach((x) {
         notification!.add(ModelNotification.fromJson(x));
       });
     }}
@@ -19,7 +19,7 @@ class ModelNotificationList {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic> {};
     if(notification != null) {
-      data['Notification'] = notification!.map((x) => x.toJson()).toList(); 
+      data['notifications'] = notification!.map((x) => x.toJson()).toList(); 
     }
     return data;
   } 

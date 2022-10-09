@@ -50,7 +50,7 @@ class _ShelfListState extends State<ShelfList> {
           //child of the main container
           child: Padding(padding: const EdgeInsets.only(top: 4),
           child: providerApi.loading? const AppLoading(loading: ChoiceLoading.page,) : 
-            providerApi.shelfData?.shelf == null? StaffList.error : ShelfGrid(),
+            providerApi.shelfData?.shelf == null? StaffList.error : const ShelfGrid(),
           ),
 
         )  

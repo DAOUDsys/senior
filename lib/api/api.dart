@@ -7,6 +7,7 @@ class API extends ApiHandel {
   // get shelves data from api and store it in the phone
   @override
   Future<ModelShelfList?> getShelf() async{
+    try{
     // req GET
     // final String jsonString = await rootBundle.loadString('assets/db.json');
 
@@ -31,6 +32,11 @@ class API extends ApiHandel {
       // dev.log("state code == error");
     }
     return dataModel;
+    }
+    catch(error) {
+      dev.log("error while get shelf data");
+    }
+    return null;
   }
 
 
@@ -38,8 +44,10 @@ class API extends ApiHandel {
   // get staffs data from api and store it in the phone
   @override
   Future<ModelStaffList?> getStaff() async{
+    try {
     // req GET
-    Uri url= Uri.parse("");
+    // https://api.npoint.io/e5541936db5f86f3ffcf
+    Uri url= Uri.parse("https://api.npoint.io/e5541936db5f86f3ffcf");
     http.Response res = await http.get(url).timeout(Duration(seconds: timeOut));
 
     ModelStaffList? dataModel;
@@ -58,12 +66,22 @@ class API extends ApiHandel {
       CustomToast.toastLess("An error occurred while fetching the data");
     }
     return dataModel;
+    }
+    catch(error) {
+      dev.log("error while get staff data");
+    }
+    return null;
   }
+
+
+
   // ********************************** notification **************************************
   @override
   Future<ModelNotificationList?> getNotification() async{
+    try{
     // req GET
-    Uri url= Uri.parse("");
+    // https://api.npoint.io/497b7c965a17b91d9167
+    Uri url= Uri.parse("https://api.npoint.io/497b7c965a17b91d9167");
     http.Response res = await http.get(url).timeout(Duration(seconds: timeOut));
 
     ModelNotificationList? dataModel;
@@ -82,5 +100,10 @@ class API extends ApiHandel {
       CustomToast.toastLess("An error occurred while fetching the data");
     }
     return dataModel;
+    }
+    catch(error) {
+      dev.log("error while get notification data");
+    }
+    return null;
   }
 }

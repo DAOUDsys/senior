@@ -5,7 +5,6 @@ class NotificationList extends StatefulWidget {
   const NotificationList({Key? key}) : super(key: key);
   @override
   State<NotificationList> createState() => _NotificationListState();
-  static Widget error = const Center(child:Text("Error",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 30),));
 }
 
 class _NotificationListState extends State<NotificationList> {
@@ -17,7 +16,7 @@ class _NotificationListState extends State<NotificationList> {
     final ControllerApi controllerApi = Provider.of<ControllerApi> (context,listen: false);
     
     Future.delayed(Duration.zero, () {
-     controllerApi.fetchStaffData();
+     controllerApi.fetchNotificationData();
     });
   
   }
@@ -51,7 +50,7 @@ class _NotificationListState extends State<NotificationList> {
           //child of the main container
           child: Padding(padding: const EdgeInsets.only(top: 10),
           child: providerApi.loading? const AppLoading(loading: ChoiceLoading.page,) : 
-            providerApi.notificationData?.notification == null? StaffList.error :NotificationGrid(),
+            providerApi.notificationData?.notification == null? StaffList.error :const NotificationGrid(),
           ),
 
         )  

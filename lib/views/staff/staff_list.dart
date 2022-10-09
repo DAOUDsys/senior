@@ -51,7 +51,7 @@ class _StaffListState extends State<StaffList> {
           //child of the main container
           child: Padding(padding: const EdgeInsets.only(top: 10),
           child: providerApi.loading? const AppLoading(loading: ChoiceLoading.page,) : 
-            providerApi.staffData?.staff == null? StaffList.error : StaffGrid(),
+            providerApi.staffData?.staff == null? StaffList.error : const StaffGrid(),
           ),
 
         )  

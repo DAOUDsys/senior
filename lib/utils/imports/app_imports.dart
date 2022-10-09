@@ -1,9 +1,9 @@
-//import 'dart:js';
+// import 'dart:js';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-//import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
 import 'dart:developer' as dev;
@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shelves_sys/utils/const/app_icons.dart';
 // import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-//import 'package:shelves_sys/utils/imports/app_imports.dart';
+// import 'package:shelves_sys/utils/imports/app_imports.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 //import 'app_imports.dart';
@@ -67,7 +67,6 @@ part '../../model/notifications/model_notification_list.dart';
 part '../../components/cards/shelf_card.dart';
 part '../../components/cards/staff_card.dart';
 part '../../components/cards/simple_notification_card.dart';
-part '../../components/cards/shimmer_card.dart';
 //components
 part '../../views/home/widgets/drawer/drawer_body.dart';
 part '../../views/home/widgets/drawer/drawer_a.dart';

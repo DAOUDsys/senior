@@ -19,7 +19,7 @@ class ShelfGrid extends StatelessWidget {
         mainAxisSpacing: 20,
 
     ),
-     itemBuilder: (context,index) =>  ShelfCard(data: data.elementAt(index))
+     itemBuilder: (context,index) => ShelfCard(data: data.elementAt(index))
        
        );
   }

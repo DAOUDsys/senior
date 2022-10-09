@@ -14,7 +14,7 @@ class NotificationGrid extends StatelessWidget {
       
       itemCount: count,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: 2.6,
+        childAspectRatio: 2.7,
         crossAxisCount: 1,  
         mainAxisSpacing: 20,
 

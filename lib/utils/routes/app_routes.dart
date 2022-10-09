@@ -6,9 +6,9 @@ class AppRoutes{
     "/singin":(context) => SingIn(),
     "/test":(context) => const MyTest(),
     "/connect":(context) => const Connect(), 
-    "/staff":(context) => StaffList(), 
-    "/shelves":(context) => ShelfList(),
-    "/notification":(context) => NotificationList(),
+    "/staff":(context) => const StaffList(), 
+    "/shelves":(context) => const ShelfList(),
+    "/notification":(context) => const NotificationList(),
     "/newaccount": (context) => const NewAccount(),
     "/edit": (context) => const ShelfSettings(),
   };

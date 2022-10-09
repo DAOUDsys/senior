@@ -2,8 +2,7 @@ part of '../../utils/imports/app_imports.dart';
 
 // ignore: must_be_immutable
 class SimpleNCard extends StatelessWidget {
-  const SimpleNCard({Key? key,this.interactive=false,required this.data}) : super(key: key);
-  final bool? interactive;
+  const SimpleNCard({Key? key,required this.data}) : super(key: key);
   final ModelNotification data;
 
   @override
@@ -42,19 +41,21 @@ class SimpleNCard extends StatelessWidget {
                 softWrap: false,
                 ),
                 ),
-                const Padding(padding: EdgeInsets.only(right: 10),
-                child:Text("1h",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+                Center(/*padding: EdgeInsets.only(right: 10),*/
+                heightFactor: data.isInteractive == true? 0:6,
+                child: const Text("1h",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
                 
                 )
               ],
             ),
             const SizedBox(height: 30,),
+          if(data.isInteractive == true)
             Divider( color: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,
           thickness: 2, 
           indent: 0,
           endIndent: 0,
           ),
-          if(interactive == true)
+          if(data.isInteractive == true)
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,

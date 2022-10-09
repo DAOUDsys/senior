@@ -1,6 +1,8 @@
 part of '../../utils/imports/app_imports.dart';
 
 class ModelShelf {
+  
+  // parameters
   String? id;
   String? shelfName;
   String? productName;
@@ -8,7 +10,7 @@ class ModelShelf {
   String? expireDate;
   double? price;
 
-
+  // constructor
   ModelShelf({
     this.id,
     this.shelfName,
@@ -17,7 +19,7 @@ class ModelShelf {
     this.weight,
     this.expireDate,
   });
-
+  
   ModelShelf.fromJson(Map<String,dynamic> json) : assert(json.isNotEmpty),
     id = json['id'],
     shelfName = json['shelfName'],

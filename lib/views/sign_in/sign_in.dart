@@ -12,10 +12,7 @@ class SingIn extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.only(top: 55),
         width: double.infinity,
-        /*decoration: BoxDecoration(
-            color:  AppColors.part_dark,
-            ),*/
-          child: Column(
+        child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(height: 35,),
@@ -70,18 +67,18 @@ class SingIn extends StatelessWidget {
                         //login button
                         
                         SizedBox(
-                          height: 50,
+                          height: 60,
                           width: 150,
                           
                           child: ElevatedButton(
                           onPressed: (){Navigator.pushNamed(context, "/test");},
                           /*color: AppColors.part_dark,*/
                           
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(36))),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                             //padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.only(left: 200)),
                             ),
-                          child: const Text("Login",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
+                          child: const Text("Login",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w700),),
                           
 
                         ),

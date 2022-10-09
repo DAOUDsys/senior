@@ -7,19 +7,19 @@ class ModelShelfList {
   ModelShelfList({this.shelf});
 
   ModelShelfList.fromJson(Map<String,dynamic> json) 
-    :assert(json['shelf'] != null) {
+   { if(json['shelves'] != null) {
       // initialize the list
       shelf = <ModelShelf> [];
       // get the data from json to our model
-      json['shelf'].forEach((x) {
+      json['shelves'].forEach((x) {
         shelf!.add(ModelShelf.fromJson(x));
       });
-    }
+    }}
     
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic> {};
     if(shelf != null) {
-      data['shelf'] = shelf!.map((x) => x.toJson()).toList(); 
+      data['shelves'] = shelf!.map((x) => x.toJson()).toList(); 
     }
     return data;
   } 

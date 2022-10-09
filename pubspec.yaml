@@ -52,6 +52,8 @@ dependencies:
   http: ^0.13.5
   #flutter toast
   fluttertoast: ^8.0.9
+  #date picker
+  syncfusion_flutter_datepicker: ^20.3.48
 
 dev_dependencies:
   flutter_test:

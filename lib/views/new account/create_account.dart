@@ -1,7 +1,24 @@
 part of '../../utils/imports/app_imports.dart';
 
-class NewAccount extends StatelessWidget {
+class NewAccount extends StatefulWidget {
   const NewAccount({Key? key}) : super(key: key);
+
+  @override
+  State<NewAccount> createState() => _NewAccountState();
+}
+
+class _NewAccountState extends State<NewAccount> {
+
+  static String dropDownValue = 'Owner';
+  var items = [   
+    'Owner',
+    'Employee',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +40,7 @@ class NewAccount extends StatelessWidget {
                   
             body:SingleChildScrollView( 
               child: Container(
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height - 120,
                //decoration of the main container
               decoration: BoxDecoration(
                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(36) , topRight: Radius.circular(36)),
@@ -84,13 +101,44 @@ class NewAccount extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("User type",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      // DropdownButton(items: const [
-                      //   DropdownMenuItem(value: false,child: Text("Owner"),),
-                      //   DropdownMenuItem(value: true,child: Text('Employee'),),
-                      // ], 
-                      // onChanged: onChanged,
-                      // iconEnabledColor: AppThemeChoose.getMode(context)? AppColors.part_dark:AppColors.part_light,
-                      // )
+                      Container(  
+                        width: 250,
+                        height: 70,
+                        decoration: BoxDecoration(
+                            color: AppThemeChoose.getMode(context)? AppColors.textbox_dark:AppColors.textbox_light,
+                            borderRadius: BorderRadius.circular(36),
+                            boxShadow:  [BoxShadow(
+                              color: AppColors.shadow_textbox_dark,
+                              blurRadius: AppThemeChoose.getMode(context)? 50:30,
+                              offset: const Offset(0,10)
+                            )]
+                        ),
+                        child: Padding(padding: const EdgeInsets.only(left: 15,right: 15,top: 10),
+                        child:DropdownButton(
+                        // the value that shown on list first
+                        value: dropDownValue,
+                        //the items the shown when click on button
+                        items: items.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                        }).toList(),
+                        // on change 
+                        onChanged: (String? newValue) {
+                         setState(() {
+                         dropDownValue = newValue!;});
+                        },
+                        // the color of the arrow
+                        iconEnabledColor: AppThemeChoose.getMode(context)? AppColors.part_dark:AppColors.part_light,
+                        // size of the arrow
+                        iconSize: 40,
+                        // to let it fill the container
+                        isExpanded: true,
+                        ),
+                        ),
+                      ),
+                      
                     ],
                   ),
                   Padding(padding: const EdgeInsets.only(left: 200),

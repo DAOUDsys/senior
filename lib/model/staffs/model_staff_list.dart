@@ -1,12 +1,12 @@
 part of '../../utils/imports/app_imports.dart';
 
-class ModeStaffList {
+class ModelStaffList {
 
   List<ModelStaff>? staff;
 
-  ModeStaffList({this.staff});
+  ModelStaffList({this.staff});
 
-  ModeStaffList.fromJson(Map<String,dynamic> json) 
+  ModelStaffList.fromJson(Map<String,dynamic> json) 
     :assert(json['staff'] != null) {
       // initialize the list
       staff = <ModelStaff> [];

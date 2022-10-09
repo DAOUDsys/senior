@@ -1,6 +1,7 @@
 //import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 import 'utils/imports/app_imports.dart';
 
 void main() {
@@ -9,12 +10,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+  static List<SingleChildWidget> providers = [
+      // all providers in the project
+      ChangeNotifierProvider(create: (context) => ControllerTheme(),),
+      ChangeNotifierProvider(create: (context) => ControllerApi(),),
+  ];
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-    create: (context) => ControllerTheme(),
+    return MultiProvider(providers: providers,
+       
     builder: (context, child) { 
       // provider theme
       final ControllerTheme manageTheme =Provider.of<ControllerTheme>(context);

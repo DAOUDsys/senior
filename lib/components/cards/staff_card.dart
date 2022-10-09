@@ -1,11 +1,13 @@
 part of '../../utils/imports/app_imports.dart';
 
 class StaffCard extends StatelessWidget {
-  const StaffCard({Key? key}) : super(key: key);
+  const StaffCard({Key? key,required this.data}) : super(key: key);
+  final ModelStaff data;
 
 
   @override
   Widget build(BuildContext context) {
+    
     return GridTile(
 
        child: Center(
@@ -27,7 +29,7 @@ class StaffCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             AppSvg.account,
-            const Text("Staff name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            Text(data.name ?? '',style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
             IconButton(onPressed: () {}, icon: Icon(Icons.cancel,color: AppColors.colorFromHex("#DE4B4B"),size: 35,))
           ],
         )

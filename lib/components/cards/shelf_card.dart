@@ -1,11 +1,19 @@
 part of '../../utils/imports/app_imports.dart';
 
 class ShelfCard extends StatelessWidget {
-  const ShelfCard({Key? key}) : super(key: key);
-
+  const ShelfCard({Key? key,required this.data}) : super(key: key);
+  final ModelShelf data;
 
   @override
   Widget build(BuildContext context) {
+    
+    String id = data.id ?? '';
+    String shelfName = data.shelfName ?? '';
+    String productName = data.productName ?? '';
+    String expireDate = data.expireDate ?? '';
+    double price = data.price ?? -1 ;
+    double weight = data.weight ?? -1;
+
     return GridTile(
         header: Column(
           children: [
@@ -14,7 +22,7 @@ class ShelfCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             AppSvg.account,
-            const Text("Shelf name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),  
+            Text(shelfName,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),  
             IconButton(
               onPressed: () {Navigator.pushNamed(context, "/edit");},
                icon: const Icon( Icons.mode_edit_outline_rounded)),
@@ -46,19 +54,18 @@ class ShelfCard extends StatelessWidget {
           children: <Widget> [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const <Widget>[
-                Text(" Item name: ", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                Text("ExpireDate: ", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+              children: <Widget>[
+                Text(" Item name: $productName", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                Text("ExpireDate: $expireDate", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const <Widget> [
-                Text(" Item type: ", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                Text("Status: ", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+              children: <Widget> [
+                Text("price: $price", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                Text(" Number of items: $weight", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
               ],
             ),
-            const Text(" Number of items: ", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
           ],
         ),
         

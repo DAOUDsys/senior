@@ -19,12 +19,14 @@ class _NewAccountState extends State<NewAccount> {
   void initState() {
     super.initState();
   }
-
+  static final GlobalKey<FormState> keyFrom = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final AuthController auth =Provider.of<AuthController>(context);
+
     return Scaffold(
       // resizeToAvoidBottomInset : false,
-      drawer: const DrawerBody(),
+      
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
@@ -50,51 +52,73 @@ class _NewAccountState extends State<NewAccount> {
              //child of the main container
             //  child: Padding(padding: const EdgeInsets.only(top: 30),
               child: Padding(
-                padding: const EdgeInsets.only(top:10,bottom: 10,left: 10,right: 10),                   
+                padding: const EdgeInsets.only(top:10,bottom: 10,left: 10,right: 10),
+                ///////////////// the form is here /////////////////////
+                child: Form(
+                  key: keyFrom,
                   child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Text("Create new account",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("First name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.person))
+                    children: const [
+                      Text("First name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,prefixIcon: Icon(Icons.person))
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Last name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.person),)
+                    children: const [
+                      Text("Last name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,prefixIcon: Icon(Icons.person),)
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Mobile",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.phone),)
+                    children: const [
+                      Text("Mobile",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,
+                        prefixIcon: Icon(Icons.phone),
+                        type: TextInputType.phone,
+                        )
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Email",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.email),)
+                    children: const [
+                      Text("Email",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,
+                      prefixIcon: Icon(Icons.email),
+                      type: TextInputType.emailAddress,
+                      validError: AppValidators.isEmail,
+                      )
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Password",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.key),)
+                      MyTextField(height: 70,width: 250,
+                      prefixIcon: const Icon(Icons.key),
+                      ispassword: auth.isShown,
+                        postIcon: auth.iconEye,
+                        onPostIcon: () {auth.changeIconShow(auth.isShown);},
+                        validError: AppValidators.isPass,
+                      )
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Password",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.key),)
+                      MyTextField(height: 70,width: 250,
+                      prefixIcon: const Icon(Icons.key),
+                      ispassword: auth.isShown,
+                        postIcon: auth.iconEye,
+                        onPostIcon: () {auth.changeIconShow(auth.isShown);},
+                        validError: AppValidators.isPass,
+                      )
                     ],
                   ),
                   Row(
@@ -115,26 +139,27 @@ class _NewAccountState extends State<NewAccount> {
                         ),
                         child: Padding(padding: const EdgeInsets.only(left: 15,right: 15,top: 10),
                         child:DropdownButton(
-                        // the value that shown on list first
-                        value: dropDownValue,
-                        //the items the shown when click on button
-                        items: items.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(items),
-                        );
-                        }).toList(),
-                        // on change 
-                        onChanged: (String? newValue) {
-                         setState(() {
-                         dropDownValue = newValue!;});
-                        },
-                        // the color of the arrow
-                        iconEnabledColor: AppThemeChoose.getMode(context)? AppColors.part_dark:AppColors.part_light,
-                        // size of the arrow
-                        iconSize: 40,
-                        // to let it fill the container
-                        isExpanded: true,
+                        
+                            // the value that shown on list first
+                            value: dropDownValue,
+                            //the items the shown when click on button
+                            items: items.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                            }).toList(),
+                            // on change 
+                            onChanged: (String? newValue) {
+                            setState(() {
+                            dropDownValue = newValue!;});
+                            },
+                            // the color of the arrow
+                            iconEnabledColor: AppThemeChoose.getMode(context)? AppColors.part_dark:AppColors.part_light,
+                            // size of the arrow
+                            iconSize: 40,
+                            // to let it fill the container
+                            isExpanded: true,
                         ),
                         ),
                       ),
@@ -143,17 +168,24 @@ class _NewAccountState extends State<NewAccount> {
                   ),
                   Padding(padding: const EdgeInsets.only(left: 200),
                   child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                            if(keyFrom.currentState?.validate() ?? false) {
+
+                            }
+                            else {
+                              dev.log("error while login");
+                            }
+                            },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(150, 65),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                      
                     ), 
                     child: const Text("Create",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                     )
                   )
+                  
                 ]),
-                   
+                ), 
               )
                 
               

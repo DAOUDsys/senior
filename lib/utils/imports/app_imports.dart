@@ -9,6 +9,7 @@ import 'dart:async';
 import 'dart:developer' as dev;
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import 'package:validators/validators.dart' as valid;
 // import 'package:intl/intl.dart';
 
 import 'package:flutter/scheduler.dart';
@@ -26,6 +27,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 //screens
 part '../../views/test.dart';
 part '../../views/sign_in/sign_in.dart';
+part '../../views/sign_in/verify_email.dart';
 part '../../views/app_splash.dart';
 part '../../views/shelf list/shelf_list.dart';
 part '../../views/connection/connect.dart';
@@ -54,6 +56,7 @@ part '../../api/api.dart';
 // controllers
 part '../../controllers/api_controller.dart';
 part '../../controllers/theme_controller.dart';
+part '../../controllers/auth_controller.dart';
 //models
 part '../../model/accounts/model_account.dart';
 part '../../model/accounts/model_account_list.dart';
@@ -78,3 +81,5 @@ part '../../components/inner_page/inner_page_term.dart';
 part '../../components/loading/enum_loading.dart';
 part '../../components/my textfield/my_textfield.dart';
 part '../../components/custom-toast/toast.dart';
+part '../../components/my richtext/MyRichText.dart';
+part '../../utils/validators/app_validators.dart';

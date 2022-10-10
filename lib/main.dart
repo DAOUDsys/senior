@@ -1,10 +1,14 @@
 //import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'utils/imports/app_imports.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+ ));
   runApp(const AppRestart(child: MyApp(),));
 }
 
@@ -14,6 +18,7 @@ class MyApp extends StatelessWidget {
       // all providers in the project
       ChangeNotifierProvider(create: (context) => ControllerTheme(),),
       ChangeNotifierProvider(create: (context) => ControllerApi(),),
+      ChangeNotifierProvider(create: (context) => AuthController()),
   ];
 
   // This widget is the root of your application.

@@ -22,7 +22,7 @@ class ShelfCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             AppSvg.account,
-            Text(shelfName,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),  
+            Text(shelfName,style: const TextStyle(fontSize: 25,fontWeight: FontWeight.w500),),  
             IconButton(
               onPressed: () {Navigator.pushNamed(context, "/edit");},
                icon: const Icon( Icons.mode_edit_outline_rounded)),
@@ -39,7 +39,7 @@ class ShelfCard extends StatelessWidget {
        child: Padding(
         padding: const EdgeInsets.only(left: 20,right: 20),
        child: Container(
-        padding: const EdgeInsets.only(top: 100),
+        padding: const EdgeInsets.only(top: 80),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(36) ,
           color: AppThemeChoose.getMode(context)? AppColors.textbox_dark: AppColors.textbox_light,
@@ -51,21 +51,14 @@ class ShelfCard extends StatelessWidget {
         ),
         // ignore: sort_child_properties_last
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget> [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text(" Item name: $productName", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                Text("ExpireDate: $expireDate", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget> [
-                Text("price: $price", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                Text(" Number of items: $weight", style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-              ],
-            ),
+            
+              MyRichText(text1: "name: ", text2: productName, width: 300, height: 30),
+              MyRichText(text1: "Price: ", text2: "$price", width: 300, height: 30),
+              MyRichText(text1: "ExpireDate: ", text2: expireDate, width: 300, height: 30),
+              MyRichText(text1: "No of items: ", text2: "$weight", width: 300, height: 30),
+            
           ],
         ),
         

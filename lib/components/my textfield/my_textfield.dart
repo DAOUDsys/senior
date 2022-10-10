@@ -2,12 +2,29 @@ part of '../../utils/imports/app_imports.dart';
 
 // ignore: must_be_immutable
 class MyTextField extends StatelessWidget {
-  MyTextField({Key? key, this.hint,this.prefixIcon,required this.width,required this.height,this.ispassword=false}) : super(key: key);
-  String? hint;
-  Icon? prefixIcon;
-  double width;
-  double height;
-  bool ispassword;
+  const MyTextField({Key? key,
+   required this.width,
+   required this.height,
+   this.hint,
+   this.prefixIcon,
+   this.initialValue,
+   this.type=TextInputType.text,
+   this.onPostIcon,
+   this.postIcon,
+   this.validError,
+   this.ispassword=false}) 
+   : super(key: key);
+
+  final String? initialValue;
+  final String? Function(String?)? validError;
+  final void Function()? onPostIcon;
+  final TextInputType type;
+  final String? hint;
+  final Icon? prefixIcon;
+  final IconData? postIcon;
+  final double width;
+  final double height;
+  final bool ispassword;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,15 +41,31 @@ class MyTextField extends StatelessWidget {
           )]
       ),
       //the main text filed
-      child: TextField(
+      child: TextFormField(
+        
+        validator: validError,
+        initialValue: initialValue,
+        keyboardType: type,
         //font size that we type in the text filed
         style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w400),
         //to show the password as dots
         obscureText: ispassword,
         decoration: InputDecoration(
-          hintText: hint,
-          hintStyle: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+          labelText: hint ?? "",
+          labelStyle: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+
+          enabledBorder: const OutlineInputBorder(
+            borderSide:BorderSide(color: Colors.transparent,width: 10)),
+          focusedBorder: const OutlineInputBorder(
+            borderSide:BorderSide(color: Colors.transparent)),
+
+          errorBorder: const OutlineInputBorder(
+            borderSide:BorderSide(color: Colors.transparent,width: 10)),
+          focusedErrorBorder: const OutlineInputBorder(
+            borderSide:BorderSide(color: Colors.transparent)),
+                    
           prefixIcon: prefixIcon,
+          suffixIcon: IconButton(onPressed: onPostIcon, icon: Icon(postIcon,size: 25,)),
           border: InputBorder.none,
         ),
       )

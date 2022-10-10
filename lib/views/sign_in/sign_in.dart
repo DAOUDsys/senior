@@ -2,9 +2,11 @@ part of '../../utils/imports/app_imports.dart';
 
 // ignore: use_key_in_widget_constructors
 class SingIn extends StatelessWidget {
-  
+  // global key for form
+   static final GlobalKey<FormState> keyFrom = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final AuthController auth =Provider.of<AuthController>(context);
     return Scaffold(
       body:SingleChildScrollView(
        child: Container(
@@ -40,26 +42,51 @@ class SingIn extends StatelessWidget {
 
                   ),
                   child: Padding(
-                    
                     padding: const EdgeInsets.all(20),
-                    child: Column(
+                    ///////////////// the form is here /////////////////////
+                    child: Form(
+                      key: keyFrom,
+                      child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         const Padding(padding:  EdgeInsets.only(top: 40,left: 30,),
-                        child: Text("LOGIN", style: TextStyle(/*color: AppColors.white_dark,*/ fontSize: 30,fontWeight: FontWeight.bold ), ),
+                        child: Text("LOGIN", style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold ), ),
                         ),
                         // padding between login text and password text box
                         const SizedBox(height: 70,),
                         //Container for user name text box
-                         MyTextField(width: 400, height: 70,prefixIcon: const Icon(Icons.person,size: 25,),hint: "User name",),
-                        const SizedBox(height: 25),
+
+
+                         const MyTextField(width: 400, height: 70,
+                         prefixIcon: Icon(Icons.person,size: 25,),
+                         hint: "User name",
+                         validError: AppValidators.isEmail,
+                         ),
+
+
+                         const SizedBox(height: 25),
+
+
                         //Container for password text box
-                        MyTextField(width: 400, height: 70,prefixIcon: const Icon(Icons.key,size: 25,),hint: "Password",ispassword: true,),
+                        MyTextField(width: 400, height: 70,
+                        prefixIcon: const Icon(Icons.key,size: 25,),
+                        hint: "Password",
+                        ispassword: auth.isShown,
+                        postIcon: auth.iconEye,
+                        onPostIcon: () {auth.changeIconShow(auth.isShown);},
+                        validError: AppValidators.isPass,
+                        ),
+
+
                         //padding between password text box and remember me box
-                        const SizedBox(height: 10,),
-                          const Padding(padding: EdgeInsets.only(top: 40,left: 20),
-                          
-                          child: Text("Remember me",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), )
+                           Padding(padding: const EdgeInsets.only(top: 30,left: 10),
+                            child: TextButton(
+                              onPressed: () {Navigator.pushNamed(context, "/verifyCode");},
+                              child: const Text("Forget password?",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold, 
+                                  fontSize: 18,
+                                  decoration: TextDecoration.underline), )),
                           
                         ),
                         
@@ -71,12 +98,18 @@ class SingIn extends StatelessWidget {
                           width: 150,
                           
                           child: ElevatedButton(
-                          onPressed: (){Navigator.pushNamed(context, "/test");},
-                          /*color: AppColors.part_dark,*/
+                          onPressed: (){
+                            if(keyFrom.currentState?.validate() ?? false) {
+
+                            }
+                            else {
+                              dev.log("error while login");
+                            }
+                            // Navigator.pushNamed(context, "/test");
+                            },
                           
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
-                            //padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.only(left: 200)),
                             ),
                           child: const Text("Login",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w700),),
                           
@@ -95,6 +128,7 @@ class SingIn extends StatelessWidget {
                           ],
                         )
                       ],
+                    ),
                     ),
                     ),
               ),

@@ -2,13 +2,12 @@ part of '../../utils/imports/app_imports.dart';
 
 class ShelfSettings extends StatelessWidget {
   const ShelfSettings({Key? key}) : super(key: key);
-
+  static final GlobalKey<FormState> keyFrom = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // resizeToAvoidBottomInset : false,
       extendBody: true,
-      drawer: const DrawerBody(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
@@ -35,50 +34,69 @@ class ShelfSettings extends StatelessWidget {
              //child of the main container
               child: Padding(
                 padding: const EdgeInsets.only(top:10,bottom: 10,left: 10,right: 10),
+                ///////////////// the form is here /////////////////////
+                child: Form(
+                  key: keyFrom,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Text("Edit shelf properties",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Shelf name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.title))
+                    children: const [
+                       Text("Shelf name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,prefixIcon:  Icon(Icons.title))
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Product name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.title),)
+                    children: const [
+                       Text("Product name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,prefixIcon:  Icon(Icons.title),)
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Weight",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.line_weight_rounded),)
+                    children: const [
+                       Text("Weight",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,
+                      prefixIcon:  Icon(Icons.line_weight_rounded),
+                      type: TextInputType.number,)
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Expire date",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.date_range),)
+                    children: const [
+                       Text("Expire date",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,
+                      prefixIcon:  Icon(Icons.date_range),
+                      type: TextInputType.datetime,
+                      validError: AppValidators.isDate,
+                      )
                       
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("Price",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: const Icon(Icons.attach_money),)
+                    children: const [
+                      Text("Price",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,
+                      prefixIcon: Icon(Icons.attach_money),
+                      type: TextInputType.number,)
                     ],
                   ),
                   
                   Padding(padding: const EdgeInsets.only(left: 200),
                   child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                            if(keyFrom.currentState?.validate() ?? false) {
+
+                            }
+                            else {
+                              dev.log("error while login");
+                            }
+                            // Navigator.pushNamed(context, "/test");
+                            },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(120, 50),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
@@ -103,7 +121,7 @@ class ShelfSettings extends StatelessWidget {
 
                 ]),
               )
-                  
+              )
               
                 
               

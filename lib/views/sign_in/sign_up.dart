@@ -9,6 +9,11 @@ class NewAccount extends StatefulWidget {
 
 class _NewAccountState extends State<NewAccount> {
 
+  String? firstValue;
+  String? secondValue;
+  String? thisEmail;
+  String? thisName;
+  
   static String dropDownValue = 'Owner';
   var items = [   
     'Owner',
@@ -20,12 +25,12 @@ class _NewAccountState extends State<NewAccount> {
     super.initState();
   }
   static final GlobalKey<FormState> keyFrom = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    final AuthController auth =Provider.of<AuthController>(context);
+    final Register auth =Provider.of<Register>(context);
 
     return Scaffold(
-      // resizeToAvoidBottomInset : false,
       
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
@@ -62,36 +67,23 @@ class _NewAccountState extends State<NewAccount> {
                     const Text("Create new account",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("First name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: Icon(Icons.person))
-                    ],
-                  ),
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Last name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon: Icon(Icons.person),)
-                    ],
-                  ),
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Mobile",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                    children: [
+                      const Text("Name",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,
-                        prefixIcon: Icon(Icons.phone),
-                        type: TextInputType.phone,
-                        )
+                      prefixIcon: const Icon(Icons.person),
+                      onChanged: (value) => thisName=value,)
                     ],
                   ),
+                  
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Email",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
+                    children: [
+                      const Text("Email",style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email),
                       type: TextInputType.emailAddress,
                       validError: AppValidators.isEmail,
+                      onChanged: (value) => thisEmail=value,
                       )
                     ],
                   ),
@@ -104,7 +96,9 @@ class _NewAccountState extends State<NewAccount> {
                       ispassword: auth.isShown,
                         postIcon: auth.iconEye,
                         onPostIcon: () {auth.changeIconShow(auth.isShown);},
+                        onChanged: (value) => secondValue=value,
                         validError: AppValidators.isPass,
+                        
                       )
                     ],
                   ),
@@ -117,8 +111,9 @@ class _NewAccountState extends State<NewAccount> {
                       ispassword: auth.isShown,
                         postIcon: auth.iconEye,
                         onPostIcon: () {auth.changeIconShow(auth.isShown);},
-                        validError: AppValidators.isPass,
-                      )
+                        validError: (value) => AppValidators.isEqualPass(value, secondValue),
+                        onChanged: (value) => firstValue=value,
+                        )
                     ],
                   ),
                   Row(
@@ -167,13 +162,34 @@ class _NewAccountState extends State<NewAccount> {
                     ],
                   ),
                   Padding(padding: const EdgeInsets.only(left: 200),
-                  child: ElevatedButton(
-                    onPressed: (){
+                  child: auth.loading?
+                  const AppLoading(loading: ChoiceLoading.button,)
+                  : ElevatedButton(
+                    onPressed: () async{
                             if(keyFrom.currentState?.validate() ?? false) {
+                              
+                              auth.newUser.setPass(firstValue);
+                              auth.newUser.setEmail(thisEmail);
+                              auth.newUser.setName(thisName);
+                              auth.newUser.setType(dropDownValue);
+                              keyFrom.currentState?.save();
 
+                              if(await auth.authSignIn(singin: false) != null) {
+                                // auth.reset();
+                                auth.userData.setPass(firstValue);
+                                auth.userData.setEmail(thisEmail);
+                                auth.userData.setName(thisName);
+                                auth.userData.setType(dropDownValue);
+                                Navigator.pushNamedAndRemoveUntil(context, "/shelves", (route) => false);
+                                CustomToast.toast("your account is created", context);
+                              } else {
+                                CustomToast.toast(auth.errorMessage, context);
+                                dev.log(auth.errorMessage);
+                              }
+  
                             }
                             else {
-                              dev.log("error while login");
+                              dev.log("error while sign up");
                             }
                             },
                     style: ElevatedButton.styleFrom(
@@ -196,5 +212,6 @@ class _NewAccountState extends State<NewAccount> {
         
     );
   }
+
 }
 

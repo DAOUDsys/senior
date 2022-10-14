@@ -1,6 +1,9 @@
 // import 'dart:js';
 
+import 'dart:io';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
@@ -10,6 +13,9 @@ import 'dart:developer' as dev;
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:validators/validators.dart' as valid;
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/single_child_widget.dart';
+
 // import 'package:intl/intl.dart';
 
 import 'package:flutter/scheduler.dart';
@@ -31,10 +37,12 @@ part '../../views/sign_in/verify_email.dart';
 part '../../views/app_splash.dart';
 part '../../views/shelf list/shelf_list.dart';
 part '../../views/connection/connect.dart';
-part '../../views/new account/create_account.dart';
+part '../../views/sign_in/sign_up.dart';
 part '../../views/edit shelf/shelf_settings.dart';
 part '../../views/staff/staff_list.dart';
 part '../../views/notifications/notifications_list.dart';
+part '../../views/sign_in/change_pass.dart';
+part '../../views/sign_in/warpper.dart';
 //route
 part '../routes/app_routes.dart';
 //theme
@@ -57,13 +65,13 @@ part '../../api/api.dart';
 part '../../controllers/api_controller.dart';
 part '../../controllers/theme_controller.dart';
 part '../../controllers/auth_controller.dart';
+part '../../controllers/providers.dart';
 //models
 part '../../model/accounts/model_account.dart';
-part '../../model/accounts/model_account_list.dart';
 part '../../model/staffs/model_staff.dart';
 part '../../model/staffs/model_staff_list.dart';
-part '../../model/shelf-settings/model_shelf.dart';
-part '../../model/shelf-settings/model_shelf_list.dart';
+part '../../model/shelf/model_shelf.dart';
+part '../../model/shelf/model_shelf_list.dart';
 part '../../model/notifications/model_notification.dart';
 part '../../model/notifications/model_notification_list.dart';
 //cards
@@ -83,3 +91,4 @@ part '../../components/my textfield/my_textfield.dart';
 part '../../components/custom-toast/toast.dart';
 part '../../components/my richtext/MyRichText.dart';
 part '../../utils/validators/app_validators.dart';
+part '../../components/config_material.dart';

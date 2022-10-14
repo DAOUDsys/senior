@@ -1,50 +1,85 @@
 //import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
 import 'utils/imports/app_imports.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
  ));
+    // WidgetsFlutterBinding.ensureInitialized();
+    // await Firebase.initializeApp();
+    
+
   runApp(const AppRestart(child: MyApp(),));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-  static List<SingleChildWidget> providers = [
-      // all providers in the project
-      ChangeNotifierProvider(create: (context) => ControllerTheme(),),
-      ChangeNotifierProvider(create: (context) => ControllerApi(),),
-      ChangeNotifierProvider(create: (context) => AuthController()),
-  ];
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+/////////////////////////////////////////
+class _MyAppState extends State<MyApp> {
+
+  late Future<FirebaseApp> firebaseApp;
+  @override
+
+  void initState() {
+    super.initState();
+    WidgetsFlutterBinding.ensureInitialized();
+    firebaseApp = Firebase.initializeApp();
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: providers,
-       
-    builder: (context, child) { 
-      // provider theme
-      final ControllerTheme manageTheme =Provider.of<ControllerTheme>(context);
-      // check theme
-      manageTheme.sharedTheme();
-      return MaterialApp(
-      onGenerateTitle: (context) => "shelf system",
-      debugShowCheckedModeBanner: false,
-      title: "shelf system",
-      initialRoute: "/",
-      routes: AppRoutes.route,
-      theme: AppThemeChoose.lightTheme(context),
-      darkTheme: AppThemeChoose.DarkTheme(context),
-      //themeMode: manageTheme.themeMode,
+    return FutureBuilder<FirebaseApp>(
+      future: firebaseApp,
+      builder: (context, snapshot) {
+
+        // if(snapshot.connectionState == ConnectionState.waiting) {
+        //   return const ConfigMaterial(child: AppLoading(loading: ChoiceLoading.page),);
+        // }
+
+        // if(snapshot.connectionState == ConnectionState.done) {
+
+          // if(snapshot.hasData) {
+
+            return MultiProvider(
+                providers: providers,
+                builder: (context, child) { 
+                  // provider theme
+                  final ControllerTheme manageTheme =Provider.of<ControllerTheme>(context);
+                  // check theme
+                  manageTheme.sharedTheme();
+                  return MaterialApp(
+                  onGenerateTitle: (context) => "shelf system",
+                  debugShowCheckedModeBanner: false,
+                  title: "shelf system",
+                  initialRoute: "/",
+                  routes: AppRoutes.route,
+                  theme: AppThemeChoose.lightTheme(context),
+                  darkTheme: AppThemeChoose.DarkTheme(context),
+                  );
+                },
+                );
+          // }
+          // else {
+          //   return const ConfigMaterial(child: Text("                     There is no data from Firebase",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 30),),);
+            
+          // }
+        // }
+
+        // else {
+        //   return const ConfigMaterial(child: Text("Error while connect to Firebase",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 30),),);
+        // }
+      
+      }
     );
-    },
-    
-    );
-    
   }
 }
 

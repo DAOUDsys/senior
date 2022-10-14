@@ -5,6 +5,7 @@ class DrawerA extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    final Register auth =Provider.of<Register>(context);
     return SafeArea(
     child: Column(
       children: [
@@ -22,13 +23,13 @@ class DrawerA extends StatelessWidget {
               ),
             //information
             Column(
-              children: const [
+              children: [
                 //name
-                  Text("Daoud Tazaza"),
+                  Text(auth.userData.name ?? "???"),
                   
 
                 //email
-                Text("heh.gd42@outlook.sa",maxLines: 1,overflow: TextOverflow.ellipsis,)
+                Text(auth.userData.email ?? "???",maxLines: 1,overflow: TextOverflow.ellipsis,)
               ],
             )
           ],

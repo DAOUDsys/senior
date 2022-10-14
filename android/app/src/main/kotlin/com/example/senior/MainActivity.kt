@@ -1,4 +1,4 @@
-package com.example.shelves_sys
+package com.example.senior
 
 import io.flutter.embedding.android.FlutterActivity
 

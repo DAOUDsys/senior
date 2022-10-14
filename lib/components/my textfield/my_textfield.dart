@@ -12,10 +12,14 @@ class MyTextField extends StatelessWidget {
    this.onPostIcon,
    this.postIcon,
    this.validError,
+   this.onSaved,
+   this.onChanged,
    this.ispassword=false}) 
    : super(key: key);
 
   final String? initialValue;
+  final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
   final String? Function(String?)? validError;
   final void Function()? onPostIcon;
   final TextInputType type;
@@ -41,9 +45,11 @@ class MyTextField extends StatelessWidget {
           )]
       ),
       //the main text filed
+      
       child: TextFormField(
-        
         validator: validError,
+        onChanged: onChanged,
+        onSaved: onSaved,
         initialValue: initialValue,
         keyboardType: type,
         //font size that we type in the text filed

@@ -19,7 +19,18 @@ class AppValidators {
       return "Please enter password";
     }
     else if(!valid.isLength(value!.trim(),8,20)){
-      return 'password should be at least 8 characters';
+      return 'least 8 characters for password';
+    }
+    return null;
+  }
+
+  static String? isEqualPass(String? value, String? pass) {
+    // trim => remove space from first and last indexes in string
+    if(value?.isEmpty ?? true) {
+      return "Please enter password";
+    }
+    else if(!valid.equals(value!.trim(), pass!.trim())){
+      return 'passwords must match';
     }
     return null;
   }

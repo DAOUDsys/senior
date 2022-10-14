@@ -1,13 +1,11 @@
 part of '../../utils/imports/app_imports.dart';
 
-class VerifyCode extends StatelessWidget {
-  const VerifyCode({Key? key}) : super(key: key);
-
+class ChangePass extends StatelessWidget {
+  const ChangePass({Key? key}) : super(key: key);
   static final GlobalKey<FormState> keyFrom = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-  final Register auth =Provider.of<Register>(context);
     return Scaffold(
       
       appBar: PreferredSize(
@@ -30,8 +28,8 @@ class VerifyCode extends StatelessWidget {
 
           //child of the main container
           child: Padding(padding:const EdgeInsets.only(top: 90),
-
-             child: Center(
+          
+            child: Center(
               // container that contain the textfield
               child: Container(
                 width: 380,
@@ -46,8 +44,8 @@ class VerifyCode extends StatelessWidget {
                   borderRadius: BorderRadius.circular(36),
                   
                 ),
-                  ///////////////// the form is here /////////////////////
                 child: Form(
+                  ///////////////// the form is here /////////////////////
                   key: keyFrom,
                   child: Column(
                   // to make space between column components
@@ -73,58 +71,39 @@ class VerifyCode extends StatelessWidget {
                       style: const TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
                       showCursor: false,
                       autofocus: true,
-                      validator: AppValidators.isEmail,
-                      onChanged: auth.verifyEmail,
                       decoration: const InputDecoration(
                         hintText: "  Email",
+                        
+                        
                         border: InputBorder.none,
-                        errorBorder: OutlineInputBorder(
-                        borderSide:BorderSide(color: Colors.transparent,width: 50)),
-                        focusedErrorBorder: OutlineInputBorder(
-                        borderSide:BorderSide(color: Colors.transparent,width: 50)),
 
                       ),
                     ),)
                     ),
-                      Column(
-                        children: [
-
-
-                        
+                      //padding: const EdgeInsets.only(top: 20),
                       ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         fixedSize: const Size(300, 50),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                       ),
-                      onPressed: () async {
+                      onPressed: (){
                             if(keyFrom.currentState?.validate() ?? false) {
-                              if(await auth.resetPassword) {
-                                Navigator.pop(context);
-                              } else {
-                                CustomToast.toast(auth.errorMessage, context);
-                              }
+
+                            }
+                            else {
+                              dev.log("error while login");
                             }
                             },
                        child: const Text("send verify code",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold), )
-                       ),
-                        TextButton(onPressed: () {
-                              // auth.reset();
-                              Navigator.pop(context);}, 
-                             child: Text("Already have account", style: TextStyle(fontSize: 20,color: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,))
-                             )
-                        ])
+                       )
                        
                   ],
                 ),
               ),
-            
-            
               )
-              
             ),
           ),
           ),
-          
 
         );
         

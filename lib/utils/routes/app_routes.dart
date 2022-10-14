@@ -12,5 +12,6 @@ class AppRoutes{
     "/notification":(context) => const NotificationList(),
     "/newaccount": (context) => const NewAccount(),
     "/edit": (context) => const ShelfSettings(),
+    "/wrapper": (context) => const Wrapper(),
   };
 }

@@ -5,6 +5,7 @@ class DrawerB extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    final Register auth =Provider.of<Register>(context);
     return Column(
       children: [
         //your shelves
@@ -37,7 +38,10 @@ class DrawerB extends StatelessWidget {
             btnOkText: "Cancel",
             btnOkOnPress: () {}, 
             btnCancelText: "Logout",
-            btnCancelOnPress: () {},
+            btnCancelOnPress: () {
+              auth.signOut();
+              Navigator.pushNamedAndRemoveUntil(context, "/singin", (route) => false);
+            },
 
             
             ).show();

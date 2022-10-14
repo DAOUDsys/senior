@@ -13,7 +13,7 @@ class _PageSplashState extends State<PageSplash>{
     
     super.initState();
     Timer(const Duration(seconds: 5),() {
-        Navigator.pushReplacementNamed(context, "/singin");
+        Navigator.pushReplacementNamed(context, "/wrapper");
       });
   }
 

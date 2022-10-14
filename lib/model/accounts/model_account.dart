@@ -1,49 +1,27 @@
 part of '../../utils/imports/app_imports.dart';
 
 class ModelAccount {
-  String? id;
-  String? firstName;
-  String? lastName;
+  String? name;
   String? password;
-  String? image;
-  String? phone;
   String? email;
-  bool? useType;
+  String? useType;
+  bool? connectToSys;
 
 
   ModelAccount({
-    this.id,
-    this.firstName,
-    this.lastName,
+    this.name,
     this.password,
-    this.image,
-    this.phone,
     this.email,
     this.useType,
+    this.connectToSys=false,
   });
 
-  ModelAccount.fromJson(Map<String,dynamic> json) : assert(json.isNotEmpty),
-    id=json['id'],
-    firstName = json['firstName'],
-    lastName = json['lastName'],
-    password = json['password'],
-    image = json['image'],
-    phone = json['phone'],
-    email = json['email'],
-    useType = json['useType'];
+  setEmail(String? email) => this.email = email;
+  setPass(String? password)=> this.password = password;
+  setName(String? name)=> this.name = name;
+  setType(String? useType)=> this.useType = useType;
+  setConnectionState(bool connectToSys) => this.connectToSys = connectToSys;
   
-  Map<String,dynamic> toJson() {
-    final Map<String,dynamic> data = <String,dynamic>{} ;
-    data['id'] =id;
-    data['firstName'] =firstName;
-    data['lastName'] =lastName;
-    data['password'] =password;
-    data['image'] =image;
-    data['phone'] =phone;
-    data['email'] =email;
-    data['useType'] =useType;
-
-    return data;
-  }
-
+  @override 
+  String toString() => 'ModelUser (email: $email , password: $password , name: $name , user type: $useType, connectToSys: $connectToSys)';
 }

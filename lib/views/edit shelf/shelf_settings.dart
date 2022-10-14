@@ -44,15 +44,8 @@ class ShelfSettings extends StatelessWidget {
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                       Text("Shelf name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                       Text("Name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,prefixIcon:  Icon(Icons.title))
-                    ],
-                  ),
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                       Text("Product name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon:  Icon(Icons.title),)
                     ],
                   ),
                   Row(
@@ -90,7 +83,7 @@ class ShelfSettings extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: (){
                             if(keyFrom.currentState?.validate() ?? false) {
-
+                              
                             }
                             else {
                               dev.log("error while login");
@@ -108,7 +101,7 @@ class ShelfSettings extends StatelessWidget {
 
                   Padding(padding: const EdgeInsets.only(left: 200),
                   child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){Navigator.pop(context);},
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(120, 50),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.shelves_sys">
+    package="com.example.senior">
    <application
         android:label="shelves_sys"
         android:name="${applicationName}"

@@ -6,7 +6,8 @@ class SingIn extends StatelessWidget {
    static final GlobalKey<FormState> keyFrom = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final AuthController auth =Provider.of<AuthController>(context);
+    final Register auth =Provider.of<Register>(context);
+
     return Scaffold(
       body:SingleChildScrollView(
        child: Container(
@@ -57,10 +58,13 @@ class SingIn extends StatelessWidget {
                         //Container for user name text box
 
 
-                         const MyTextField(width: 400, height: 70,
-                         prefixIcon: Icon(Icons.person,size: 25,),
+                         MyTextField(width: 400, height: 70,
+                         prefixIcon: const Icon(Icons.person,size: 25,),
                          hint: "User name",
                          validError: AppValidators.isEmail,
+                         // on save take string and set email take a string so we should not send there data to each other (like the next text filed)
+                         // the compiler will do that automatically 
+                         onSaved: auth.userData.setEmail,
                          ),
 
 
@@ -75,6 +79,7 @@ class SingIn extends StatelessWidget {
                         postIcon: auth.iconEye,
                         onPostIcon: () {auth.changeIconShow(auth.isShown);},
                         validError: AppValidators.isPass,
+                        onSaved: (value) => auth.userData.setPass(value),
                         ),
 
 
@@ -98,13 +103,18 @@ class SingIn extends StatelessWidget {
                           width: 150,
                           
                           child: ElevatedButton(
-                          onPressed: (){
+                          onPressed: () async {
                             if(keyFrom.currentState?.validate() ?? false) {
+                              keyFrom.currentState!.save();
+                              if(await auth.authSignIn(singin: true) != null) {
+                                // auth.reset();
+                                Navigator.pushNamedAndRemoveUntil(context, "/shelves", (route) => false);
+                              } else {
+                                CustomToast.toast(auth.errorMessage, context);
+                              }
 
                             }
-                            else {
-                              dev.log("error while login");
-                            }
+                            
                             // Navigator.pushNamed(context, "/test");
                             },
                           
@@ -122,7 +132,9 @@ class SingIn extends StatelessWidget {
                         Row(
                           children:  <Widget>[
                              const Text("Don't have an account? ",style: TextStyle(fontSize: 18),),
-                             TextButton(onPressed: () {Navigator.pushNamed(context, "/newaccount");}, 
+                             TextButton(onPressed: () {
+                              // auth.reset();
+                              Navigator.pushNamed(context, "/newaccount");}, 
                              child: Text("Register instead", style: TextStyle(fontSize: 20,color: AppThemeChoose.getMode(context)? AppColors.part_dark: AppColors.part_light,))
                              )
                           ],

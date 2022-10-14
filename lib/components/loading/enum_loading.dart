@@ -2,7 +2,7 @@ part of '../../utils/imports/app_imports.dart';
 
 // enum loading
 enum ChoiceLoading {
-  profile,image,page,webView
+  profile,image,page,webView,button
 }
 
 // app loading
@@ -33,6 +33,11 @@ class AppLoading extends StatelessWidget
       case ChoiceLoading.webView:
         return  SpinKitFadingCube(
         color: AppThemeChoose.getMode(context)? Colors.purple : Colors.lightGreen,
+      );
+
+      case ChoiceLoading.button:
+        return  SpinKitFadingCircle(
+        color: AppThemeChoose.getMode(context)? AppColors.part_dark : AppColors.part_light,
       );
       
       default :

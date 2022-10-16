@@ -6,12 +6,13 @@ class ShelfCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-    String id = data.id ?? '';
+    ControllerDB db = Provider.of(context);
+    ControllerDB.currentId = data.id ?? '';
     String name = data.name ?? '';
     String expireDate = data.expireDate ?? '';
     double price = data.price ?? -1 ;
     double weight = data.weight ?? -1;
+    
 
     return GridTile(
         header: Column(
@@ -23,7 +24,11 @@ class ShelfCard extends StatelessWidget {
             AppSvg.account,
             Text(name,style: const TextStyle(fontSize: 25,fontWeight: FontWeight.w500),),  
             IconButton(
-              onPressed: () {Navigator.pushNamed(context, "/edit");},
+              onPressed: () async {
+                if(await db.installShelf(context, dataModel)) {
+
+                }
+                Navigator.pushNamed(context, "/edit");},
                icon: const Icon( Icons.mode_edit_outline_rounded)),
           ],
         ),
@@ -68,4 +73,15 @@ class ShelfCard extends StatelessWidget {
         
       
   }
+
+  ModelShelvesDB get dataModel {
+    return ModelShelvesDB(
+      expireDate: data.expireDate,
+      id: data.id,
+      name: data.name,
+      price: data.price.toString(),
+      weight: data.weight.toString(),
+      );
+  }
+
 }

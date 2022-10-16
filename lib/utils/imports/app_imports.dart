@@ -1,34 +1,37 @@
-// import 'dart:js';
 
 import 'dart:io';
 
+import 'dart:async';
+import 'package:sqflite/sqflite.dart';
+import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'dart:async';
 import 'dart:developer' as dev;
-import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
 import 'package:validators/validators.dart' as valid;
-import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/single_child_widget.dart';
+import 'package:path_provider/path_provider.dart' as dir;
 
+// import 'dart:js';
+//import 'app_imports.dart';
 // import 'package:intl/intl.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/services.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+// import 'package:shelves_sys/utils/imports/app_imports.dart';
 
+import 'package:provider/single_child_widget.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shelves_sys/utils/const/app_icons.dart';
-// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-// import 'package:shelves_sys/utils/imports/app_imports.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-//import 'app_imports.dart';
 
 //screens
 part '../../views/test.dart';
@@ -43,6 +46,11 @@ part '../../views/staff/staff_list.dart';
 part '../../views/notifications/notifications_list.dart';
 part '../../views/sign_in/change_pass.dart';
 part '../../views/sign_in/warpper.dart';
+// DB
+part '../database/tables/table_shelves.dart';
+part '../database/model/model_shelves.dart';
+part '../database/build/query_shelves.dart';
+part '../database/config/init_db.dart';
 //route
 part '../routes/app_routes.dart';
 //theme
@@ -66,6 +74,7 @@ part '../../controllers/api_controller.dart';
 part '../../controllers/theme_controller.dart';
 part '../../controllers/auth_controller.dart';
 part '../../controllers/providers.dart';
+part '../../controllers/database_controller.dart';
 //models
 part '../../model/accounts/model_account.dart';
 part '../../model/staffs/model_staff.dart';

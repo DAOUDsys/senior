@@ -13,13 +13,14 @@ class DrawerB extends StatelessWidget {
         //analysis and suggestions
           DrawerBComponent(title: "Analysis and suggestions", icon: AppSvg.data),
         //staff management
+          if(auth.userData.useType == 'Owner')
           DrawerBComponent(title: "Staff management", icon: AppSvg.staff, onTap: () {Navigator.pushReplacementNamed(context, "/staff");},),
         //theme
           //DrawerBComponent(title: "Theme", icon: AppSvg.theme, trailing: const DrawerTheme(), ),
         //notifications
           DrawerBComponent(title: "Notifications", icon: AppSvg.notification, onTap: () {Navigator.pushReplacementNamed(context, "/notification");},),
         //settings
-          DrawerBComponent(title: "Settings", icon: AppSvg.settings, onTap: () {CustomToast.toast("test", context);},),
+          // DrawerBComponent(title: "Settings", icon: AppSvg.settings, onTap: () {CustomToast.toast("test", context);},),
         //more information
           DrawerBComponent(title: "About us", icon: AppSvg.information, 
           onTap: (){

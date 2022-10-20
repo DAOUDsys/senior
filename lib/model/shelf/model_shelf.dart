@@ -5,9 +5,10 @@ class ModelShelf {
   // parameters
   String? id;
   String? name;
-  double? weight;
+  String? weight;
   String? expireDate;
-  double? price;
+  String? price;
+  String? location;
 
   // constructor
   ModelShelf({
@@ -16,6 +17,7 @@ class ModelShelf {
     this.price,
     this.weight,
     this.expireDate,
+    this.location,
   });
   
   ModelShelf.fromJson(Map<String,dynamic> json) : assert(json.isNotEmpty),
@@ -23,7 +25,8 @@ class ModelShelf {
     name = json['name'],
     price = json['price'],
     weight = json['weight'],
-    expireDate = json['expireDate'];
+    expireDate = json['expireDate'],
+    location = json['location'];
   
   Map<String,dynamic> toJson() {
     final Map<String,dynamic> data = <String,dynamic>{} ;
@@ -32,6 +35,7 @@ class ModelShelf {
     data['price'] =price;
     data['weight'] =weight;
     data['expireDate'] =expireDate;
+    data['location'] =location;
 
     return data;
   }

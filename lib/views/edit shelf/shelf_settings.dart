@@ -1,10 +1,23 @@
 part of '../../utils/imports/app_imports.dart';
 
-class ShelfSettings extends StatelessWidget {
+class ShelfSettings extends StatefulWidget {
   const ShelfSettings({Key? key}) : super(key: key);
   static final GlobalKey<FormState> keyFrom = GlobalKey<FormState>();
+  
+  @override
+  State<ShelfSettings> createState() => _ShelfSettingsState();
+}
+
+class _ShelfSettingsState extends State<ShelfSettings> {
+  String? location;
+  String? price;
+  String? weight;
+  String? name;
+  String? date;
   @override
   Widget build(BuildContext context) {
+    ControllerDB db = Provider.of(context);
+    dev.log(db.currentShelf!.id!);
     return Scaffold(
       // resizeToAvoidBottomInset : false,
       extendBody: true,
@@ -36,59 +49,76 @@ class ShelfSettings extends StatelessWidget {
                 padding: const EdgeInsets.only(top:10,bottom: 10,left: 10,right: 10),
                 ///////////////// the form is here /////////////////////
                 child: Form(
-                  key: keyFrom,
+                  key: ShelfSettings.keyFrom,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     const Text("Edit shelf properties",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                       Text("Name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-                      MyTextField(height: 70,width: 250,prefixIcon:  Icon(Icons.title))
+                    children: [
+                       const Text("Name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,
+                      prefixIcon: const Icon(Icons.title),
+                      initialValue: db.currentShelf!.name ?? "??",)
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                       Text("Weight",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                    children: [
+                      const Text("Weight",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,
-                      prefixIcon:  Icon(Icons.line_weight_rounded),
-                      type: TextInputType.number,)
+                      prefixIcon: const Icon(Icons.line_weight_rounded),
+                      type: TextInputType.number,
+                      initialValue: db.currentShelf!.weight ?? "??",)
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                       Text("Expire date",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                    children: [
+                      const Text("Expire date",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,
-                      prefixIcon:  Icon(Icons.date_range),
+                      prefixIcon: const Icon(Icons.date_range),
                       type: TextInputType.datetime,
-                      validError: AppValidators.isDate,
-                      )
+                      // validError: AppValidators.isDate,
+                      initialValue: db.currentShelf!.expireDate ?? "??",)
                       
                     ],
                   ),
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Price",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                    children: [
+                      const Text("Price",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
                       MyTextField(height: 70,width: 250,
-                      prefixIcon: Icon(Icons.attach_money),
-                      type: TextInputType.number,)
+                      prefixIcon: const Icon(Icons.attach_money),
+                      type: TextInputType.number,
+                      initialValue: db.currentShelf!.price ?? "??",)
+                    ],
+                  ),
+                  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Location",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+                      MyTextField(height: 70,width: 250,
+                      prefixIcon: const Icon(Icons.location_on),
+                      onChanged: (p0) => location=p0,
+                      initialValue: db.currentShelf!.location ?? "??",)
                     ],
                   ),
                   
                   Padding(padding: const EdgeInsets.only(left: 200),
                   child: ElevatedButton(
                     onPressed: (){
-                            if(keyFrom.currentState?.validate() ?? false) {
+                            if(ShelfSettings.keyFrom.currentState?.validate() ?? false) {
                               
-                            }
-                            else {
-                              dev.log("error while login");
-                            }
-                            // Navigator.pushNamed(context, "/test");
+                              dev.log("its valid to update now");
+                              db.currentShelf!.location = location;
+                              db.currentShelf!.price = price;
+                              db.currentShelf!.expireDate = date;
+                              db.currentShelf!.weight = weight;
+                              db.currentShelf!.name = name;
+                              QueryShelves.db.UpdateShelfById(db.currentShelf!);
+                            } 
                             },
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(120, 50),

@@ -11,8 +11,8 @@ class API extends ApiHandel {
     // req GET
     // final String jsonString = await rootBundle.loadString('assets/db.json');
 
-    // https://www.npoint.io/docs/d6e992a001ad483a9820
-    Uri url= Uri.parse("https://api.npoint.io/d6e992a001ad483a9820"); ///////////////////
+    // https://api.npoint.io/815ad3ffcf8efc5560fd
+    Uri url= Uri.parse("https://api.npoint.io/815ad3ffcf8efc5560fd"); ///////////////////
     http.Response res = await http.get(url).timeout(Duration(seconds: timeOut)); /////////////////
     ModelShelfList? dataModel;
 

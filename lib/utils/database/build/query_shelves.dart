@@ -59,6 +59,7 @@ class QueryShelves {
       });
   }
 
+  // ignore: non_constant_identifier_names
   Future<int> UpdateShelfById(ModelShelvesDB data) {
     return hasDB.then((Database localDB) => localDB.update(TableShelves.nameTable, data.toMap(),
     where: '${TableShelves.colId} = ?',

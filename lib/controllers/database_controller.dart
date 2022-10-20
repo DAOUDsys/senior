@@ -2,7 +2,7 @@ part of '../../utils/imports/app_imports.dart';
 
 class ControllerDB extends ChangeNotifier {
 
-  static String? currentId;
+  ModelShelvesDB? currentShelf;
 
   Future<bool> installShelf (BuildContext context, ModelShelvesDB data) async {
     ModelShelvesDB? checkApp = await QueryShelves.db.getShelfById(data);

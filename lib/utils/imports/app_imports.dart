@@ -1,9 +1,10 @@
 
 import 'dart:io';
-
 import 'dart:async';
+// import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,14 +15,6 @@ import 'package:path/path.dart' as path;
 import 'package:validators/validators.dart' as valid;
 import 'package:path_provider/path_provider.dart' as dir;
 
-// import 'dart:js';
-//import 'app_imports.dart';
-// import 'package:intl/intl.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/services.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-// import 'package:shelves_sys/utils/imports/app_imports.dart';
 
 import 'package:provider/single_child_widget.dart';
 import 'package:flutter/scheduler.dart';

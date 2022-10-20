@@ -4,6 +4,7 @@
         "ARGB",
         "autofocus",
         "cupertino",
+        "datetime",
         "Fluttertoast",
         "getcontext",
         "gridview",

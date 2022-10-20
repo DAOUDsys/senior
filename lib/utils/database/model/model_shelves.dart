@@ -8,6 +8,7 @@ class ModelShelvesDB {
   String? weight;
   String? expireDate;
   String? price;
+  String? location;
 
   // constructor
   ModelShelvesDB({
@@ -16,6 +17,7 @@ class ModelShelvesDB {
     this.price,
     this.weight,
     this.expireDate,
+    this.location,
   });
   
   ModelShelvesDB.fromMap({required Map<String,dynamic> map}) : assert(map.isNotEmpty),
@@ -23,7 +25,9 @@ class ModelShelvesDB {
     name = map['name'],
     price = map['price'],
     weight = map['weight'],
-    expireDate = map['expireDate'];
+    expireDate = map['expireDate'],
+    location = map['location'];
+
   
   Map<String,dynamic> toMap() {
     final Map<String,dynamic> data = <String,dynamic>{} ;
@@ -32,6 +36,7 @@ class ModelShelvesDB {
     data['price'] =price;
     data['weight'] =weight;
     data['expireDate'] =expireDate;
+    data['location'] =location;
 
     return data;
   }

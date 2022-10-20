@@ -7,11 +7,11 @@ class ShelfCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ControllerDB db = Provider.of(context);
-    ControllerDB.currentId = data.id ?? '';
     String name = data.name ?? '';
     String expireDate = data.expireDate ?? '';
-    double price = data.price ?? -1 ;
-    double weight = data.weight ?? -1;
+    String price = data.price ?? '' ;
+    String weight = data.weight ?? '';
+    String location = data.location ?? '';
     
 
     return GridTile(
@@ -25,10 +25,10 @@ class ShelfCard extends StatelessWidget {
             Text(name,style: const TextStyle(fontSize: 25,fontWeight: FontWeight.w500),),  
             IconButton(
               onPressed: () async {
-                if(await db.installShelf(context, dataModel)) {
-
-                }
-                Navigator.pushNamed(context, "/edit");},
+                  db.currentShelf = dataModel;
+                  Navigator.pushNamed(context, "/edit");
+                
+                },
                icon: const Icon( Icons.mode_edit_outline_rounded)),
           ],
         ),
@@ -58,9 +58,10 @@ class ShelfCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget> [
 
-              MyRichText(text1: "Price: ", text2: "$price", width: 300, height: 40),
-              MyRichText(text1: "ExpireDate: ", text2: expireDate, width: 300, height: 40),
-              MyRichText(text1: "No of items: ", text2: "$weight", width: 300, height: 40),
+              MyRichText(text1: "Price: ", text2: price, width: 300, height: 30),
+              MyRichText(text1: "ExpireDate: ", text2: expireDate, width: 300, height: 30),
+              MyRichText(text1: "No of items: ", text2: weight, width: 300, height: 30),
+              MyRichText(text1: "location: ", text2: location, width: 300, height: 30),
             
           ],
         ),
@@ -79,8 +80,9 @@ class ShelfCard extends StatelessWidget {
       expireDate: data.expireDate,
       id: data.id,
       name: data.name,
-      price: data.price.toString(),
-      weight: data.weight.toString(),
+      price: data.price,
+      weight: data.weight,
+      location: data.location,
       );
   }
 

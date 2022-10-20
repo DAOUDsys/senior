@@ -47,6 +47,7 @@ class MyTextField extends StatelessWidget {
       //the main text filed
       
       child: TextFormField(
+        
         validator: validError,
         onChanged: onChanged,
         onSaved: onSaved,

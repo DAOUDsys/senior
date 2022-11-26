@@ -5,6 +5,7 @@
         "autofocus",
         "cupertino",
         "datetime",
+        "Firestore",
         "Fluttertoast",
         "getcontext",
         "gridview",
@@ -13,6 +14,7 @@
         "RGBO",
         "singin",
         "spinkit",
+        "sqflite",
         "textbox",
         "warpper",
         "الضغط"

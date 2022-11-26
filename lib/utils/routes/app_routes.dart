@@ -5,7 +5,6 @@ class AppRoutes{
     "/":(context) => const PageSplash(),
     "/singin":(context) => SingIn(),
     "/verifyCode":(context) => const VerifyCode(),
-    "/test":(context) => const MyTest(),
     "/connect":(context) => const Connect(), 
     "/staff":(context) => const StaffList(), 
     "/shelves":(context) => const ShelfList(),

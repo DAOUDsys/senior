@@ -1,27 +1,38 @@
 part of '../../utils/imports/app_imports.dart';
 
 class ModelAccount {
+  String? id;
   String? name;
   String? password;
   String? email;
-  String? useType;
-  bool? connectToSys;
+  String? userType;
+  String? ownerId;
+
 
 
   ModelAccount({
-    this.name,
+    this.id = '',
+    this.name = '',
     this.password,
-    this.email,
-    this.useType,
-    this.connectToSys=false,
+    this.email = '',
+    this.userType,
+    this.ownerId = '',
   });
 
+  setId(String? id) => this.id = id;
   setEmail(String? email) => this.email = email;
   setPass(String? password)=> this.password = password;
   setName(String? name)=> this.name = name;
-  setType(String? useType)=> this.useType = useType;
-  setConnectionState(bool connectToSys) => this.connectToSys = connectToSys;
+  setType(String? userType)=> this.userType = userType;
+  setOwnerId(String? ownerId) => this.ownerId = ownerId;
+
+
+  ModelAccount.fromSnapshot(snapshot)
+    : name = snapshot.data()['name'],
+      email = snapshot.data()['email'],
+      userType = snapshot.data()['type'],
+      ownerId = snapshot.data()['ownerId'];
   
   @override 
-  String toString() => 'ModelUser (email: $email , password: $password , name: $name , user type: $useType, connectToSys: $connectToSys)';
+  String toString() => 'ModelUser (ID: $id , email: $email , password: $password , name: $name , user type: $userType, ownerId: $ownerId)';
 }

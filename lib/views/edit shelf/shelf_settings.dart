@@ -108,7 +108,7 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                   
                   Padding(padding: const EdgeInsets.only(left: 200),
                   child: ElevatedButton(
-                    onPressed: (){
+                    onPressed: () async{
                             if(ShelfSettings.keyFrom.currentState?.validate() ?? false) {
                               
                               dev.log("its valid to update now");
@@ -117,7 +117,11 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                               db.currentShelf!.expireDate = date;
                               db.currentShelf!.weight = weight;
                               db.currentShelf!.name = name;
-                              QueryShelves.db.UpdateShelfById(db.currentShelf!);
+                              await QueryShelves.db.UpdateShelfById(db.currentShelf!);
+                              // ignore: use_build_context_synchronously
+                              CustomToast.toast("Shelf data updated correctly", context);
+                              // ignore: use_build_context_synchronously
+                              Navigator.pop(context);
                             } 
                             },
                     style: ElevatedButton.styleFrom(

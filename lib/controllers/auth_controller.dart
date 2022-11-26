@@ -5,6 +5,8 @@ class Register extends ChangeNotifier {
   bool isShown = true;
   IconData iconEye = AppIcons.noShowPass;
   String? verifiedEmail;
+  List shelvesList = [];
+  final CollectionReference shelves = FirebaseFirestore.instance.collection('shelves');
 
   void changeIconShow(bool value) {
     if(value) {
@@ -88,7 +90,7 @@ class Register extends ChangeNotifier {
   Future<bool> get resetPassword async {
     try {
       changeLoadingValue = true;
-      await firebaseAuth.sendPasswordResetEmail(email: verifiedEmail!);
+      await firebaseAuth.sendPasswordResetEmail(email: verifiedEmail!.trim());
       changeLoadingValue = false;
       return true;
     } on SocketException {
@@ -113,5 +115,20 @@ class Register extends ChangeNotifier {
 
   // *********************** stream connection from firebase **************************
   Stream<User?> get userStream => firebaseAuth.authStateChanges();
+
+  // *********************** get shelves data by user idn m **************************
+  Future getShelves(String id) async {
+    try {
+      await shelves.get().then((snapshot) {
+        for (var x in snapshot.docs) {
+          shelvesList.add(x);
+        }
+        });
+        return shelvesList;
+    } catch(e) {
+      CustomToast.toastLess("error $e");
+      return null;
+    }
+  }
 
 }

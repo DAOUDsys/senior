@@ -9,15 +9,13 @@ class API extends ApiHandel {
   Future<ModelShelfList?> getShelf() async{
     try{
     // req GET
-    // final String jsonString = await rootBundle.loadString('assets/db.json');
-
     // https://api.npoint.io/815ad3ffcf8efc5560fd
-    Uri url= Uri.parse("https://api.npoint.io/815ad3ffcf8efc5560fd"); ///////////////////
-    http.Response res = await http.get(url).timeout(Duration(seconds: timeOut)); /////////////////
+    Uri url= Uri.parse("https://api.npoint.io/815ad3ffcf8efc5560fd"); 
+    http.Response res = await http.get(url).timeout(Duration(seconds: timeOut));
     ModelShelfList? dataModel;
 
 
-    if(res.statusCode == 200) { ///////////////////
+    if(res.statusCode == 200) {
       // 200 == success 
       // https://miro.medium.com/max/920/1*w_iicbG7L3xEQTArjHUS6g.jpeg
       // the jsonDecode covert the string file that will reserved to readable json file(بفك الضغط)

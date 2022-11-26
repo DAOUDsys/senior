@@ -8,5 +8,6 @@ part of '../../utils/imports/app_imports.dart';
       ChangeNotifierProvider(create: (_) => ControllerApi(),),
       ChangeNotifierProvider(create: (_) => Register()),
       ChangeNotifierProvider(create: (_) => ControllerDB()),
+      ChangeNotifierProvider(create: (_) => FirebaseController()),
 
   ];

@@ -8,22 +8,19 @@ class DrawerB extends StatefulWidget {
 }
 
 String type = 'Employee';
+
 class _DrawerBState extends State<DrawerB> {
-
-
   @override
   void initState() {
     super.initState();
-
   }
-
 
   @override
   Widget build(BuildContext context) {
-
-    final FirebaseController currentUserData = Provider.of<FirebaseController>(context);
+    final FirebaseController currentUserData =
+        Provider.of<FirebaseController>(context);
     final Register auth = Provider.of<Register>(context);
-    
+
     return Column(
       children: [
         //your shelves
@@ -87,8 +84,9 @@ class _DrawerBState extends State<DrawerB> {
                 btnCancelOnPress: () {
                   auth.signOut();
                   currentUserData.connected = '';
+
                   Navigator.pushNamedAndRemoveUntil(
-                      context, "/singin", (route) => false);
+                      context, "/wrapper", (route) => false);
                 },
               ).show();
             }),

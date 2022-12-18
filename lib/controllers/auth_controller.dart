@@ -6,19 +6,20 @@ class Register extends ChangeNotifier {
   IconData iconEye = AppIcons.noShowPass;
   String? verifiedEmail;
   List shelvesList = [];
-  final CollectionReference shelves = FirebaseFirestore.instance.collection('shelves');
+  final CollectionReference shelves =
+      FirebaseFirestore.instance.collection('shelves');
 
   void changeIconShow(bool value) {
-    if(value) {
+    if (value) {
       iconEye = AppIcons.showPass;
       isShown = false;
-    }
-    else {
+    } else {
       iconEye = AppIcons.noShowPass;
       isShown = true;
     }
     notifyListeners();
   }
+
   // *********************** verify Email **************************
   void verifyEmail(String? value) {
     verifiedEmail = value;
@@ -32,7 +33,6 @@ class Register extends ChangeNotifier {
     userData = ModelAccount();
     notifyListeners();
   }
-
 
   // *********************** Auth Services **************************
   // to check if the data still coming from firebase
@@ -51,9 +51,9 @@ class Register extends ChangeNotifier {
     notifyListeners();
   }
 
-  
   // *********************** SignUp or SignIn **************************
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   /// [singin] to check if if the user want to sing in or create a new account
   /// [authSignIn] the method used to sign in or create account in firebase and check validity of data
   Future<User?> authSignIn({bool singin = false}) async {
@@ -61,16 +61,18 @@ class Register extends ChangeNotifier {
       changeLoadingValue = true;
       // ignore: unused_local_variable
       // this method return user that have sign up
-      UserCredential authResult = singin? 
-      await firebaseAuth.signInWithEmailAndPassword(email: userData.email!, password: userData.password!):
-      await firebaseAuth.createUserWithEmailAndPassword(email: newUser.email!, password: newUser.password!);
+      UserCredential authResult = singin
+          ? await firebaseAuth.signInWithEmailAndPassword(
+              email: userData.email!, password: userData.password!)
+          : await firebaseAuth.createUserWithEmailAndPassword(
+              email: newUser.email!, password: newUser.password!);
 
-        late User user; 
-        if(authResult.user?.uid.isNotEmpty ?? false) {
-          user = authResult.user!;
-          changeLoadingValue = false;
-        }
-        return user;
+      late User user;
+      if (authResult.user?.uid.isNotEmpty ?? false) {
+        user = authResult.user!;
+        changeLoadingValue = false;
+      }
+      return user;
     } on SocketException {
       changeLoadingValue = false;
       setErrorMessage = 'No internet connection';
@@ -79,11 +81,11 @@ class Register extends ChangeNotifier {
       changeLoadingValue = false;
       setErrorMessage = error.message ?? '';
       return null;
-    } catch(e) {
+    } catch (e) {
       changeLoadingValue = false;
-      setErrorMessage =e.toString();
+      setErrorMessage = e.toString();
       return null;
-      }
+    }
   }
 
   // *********************** reset password **************************
@@ -101,16 +103,17 @@ class Register extends ChangeNotifier {
       changeLoadingValue = false;
       setErrorMessage = error.message ?? '';
       return false;
-    } catch(e) {
+    } catch (e) {
       changeLoadingValue = false;
-      setErrorMessage =e.toString();
+      setErrorMessage = e.toString();
       return false;
-      }
+    }
   }
 
   // *********************** Sign Out **************************
-  Future<void>  signOut() async {
+  Future<void> signOut() async {
     await firebaseAuth.signOut();
+    reset();
   }
 
   // *********************** stream connection from firebase **************************
@@ -123,12 +126,11 @@ class Register extends ChangeNotifier {
         for (var x in snapshot.docs) {
           shelvesList.add(x);
         }
-        });
-        return shelvesList;
-    } catch(e) {
+      });
+      return shelvesList;
+    } catch (e) {
       CustomToast.toastLess("error $e");
       return null;
     }
   }
-
 }

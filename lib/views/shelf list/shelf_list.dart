@@ -7,19 +7,24 @@ class ShelfList extends StatefulWidget {
   State<ShelfList> createState() => _ShelfListState();
 }
 
+Future refreshShelf(BuildContext context) async {
+  final ControllerApi controllerApi =
+      Provider.of<ControllerApi>(context, listen: false);
+  controllerApi.fetchShelfData();
+}
+
 class _ShelfListState extends State<ShelfList> {
   @override
   void initState() {
     super.initState();
-    
-      dev.log("shelf list page");
-      final ControllerApi controllerApi =
-          Provider.of<ControllerApi>(context, listen: false);
 
-      Future.delayed(Duration.zero, () {
-        controllerApi.fetchShelfData();
-      });
-    
+    dev.log("shelf list page");
+    final ControllerApi controllerApi =
+        Provider.of<ControllerApi>(context, listen: false);
+
+    Future.delayed(Duration.zero, () {
+      controllerApi.fetchShelfData();
+    });
   }
 
   @override
@@ -43,27 +48,30 @@ class _ShelfListState extends State<ShelfList> {
             ? AppColors.part_dark
             : AppColors.part_light,
         //container that have the grid inside it and its the body
-        body: Container(
-          //decoration of main
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(36), topRight: Radius.circular(36)),
-            color: AppThemeChoose.getMode(context)
-                ? AppColors.main_dark
-                : AppColors.main_light,
-          ),
+        body: RefreshIndicator(
+            onRefresh: () => refreshShelf(context),
+            child: Container(
+              //decoration of main
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(36),
+                    topRight: Radius.circular(36)),
+                color: AppThemeChoose.getMode(context)
+                    ? AppColors.main_dark
+                    : AppColors.main_light,
+              ),
 
-          //child of the main container
-          child: Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: providerApi.loading
-                ? const AppLoading(
-                    loading: ChoiceLoading.page,
-                  )
-                : providerApi.shelfData?.shelf == null
-                    ? StaffList.error
-                    : const ShelfGrid(),
-          ),
-        ));
+              //child of the main container
+              child: Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: providerApi.loading
+                    ? const AppLoading(
+                        loading: ChoiceLoading.page,
+                      )
+                    : providerApi.shelfData?.shelf == null
+                        ? StaffList.error
+                        : const ShelfGrid(),
+              ),
+            )));
   }
 }

@@ -37,7 +37,11 @@ class ModelShelf {
     data['expireDate'] =expireDate;
     data['location'] =location;
 
+
     return data;
   }
 
+  // void toString() {
+  //   dev.log('id: $id, name: $name, price: $price, weight: $weight, expire date: $expireDate, location: $location');
+  // }
 }

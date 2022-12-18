@@ -7,11 +7,13 @@ class Connect extends StatelessWidget {
   Widget build(BuildContext context) {
     String firstValue = '';
     bool contain = false;
-    final Register auth = Provider.of<Register>(context);
+    final FirebaseAuth user = FirebaseAuth.instance;
     final FirebaseController currentUserData =
         Provider.of<FirebaseController>(context);
+    
 
     return Scaffold(
+      drawer: const DrawerBody(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
@@ -106,36 +108,50 @@ class Connect extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50))),
                       onPressed: () async {
+                        final docUsers =
+                            FirebaseFirestore.instance.collection("users");
+                        await docUsers.get().then(
+                            (snapshot) => snapshot.docs.forEach((element) {
+                                  if (element.reference.id.toLowerCase() ==
+                                      firstValue.toLowerCase()) {
+                                    contain = true;
+                                    firstValue = element.reference.id;
+                                  }
+                                }));
 
-                        final docUsers = FirebaseFirestore.instance.collection("users");
-                        await docUsers.get().then((snapshot) =>
-                            // ignore: avoid_function_literals_in_foreach_calls
-                            snapshot.docs.forEach((element) {
-                              if(element.reference.id.toLowerCase() == firstValue.toLowerCase()) {
-                               contain = true;
-                              } 
-                            }));
-                        
                         if (contain) {
-                          auth.newUser.setOwnerId(firstValue);
-                          final json = {
+                          // add owner id to employee
+
+                          final x = docUsers.doc(user.currentUser!.uid);
+                          await x.update({"ownerId": firstValue});
+
+                          // add employee name to owner
+
+                          List<dynamic> target = [];
+
+                          final y = docUsers.doc(firstValue);
+                          await y.get().then(
+                              (snapshot) => {target = snapshot['ownerId']});
+
+                          if (target.runtimeType != List<dynamic>) {
+                            target = [];
+                          }
+                          target.add({
                             'name': currentUserData.registeredUser.name,
-                            'type': currentUserData.registeredUser.userType,
-                            'email': currentUserData.registeredUser.email,
-                            'ownerId': firstValue,
-                          };
+                            'id': user.currentUser!.uid
+                          });
 
-                          final x =
-                              docUsers.doc(currentUserData.registeredUser.id);
-                          await x.set(json);
+                          await y.update({"ownerId": target});
 
-                          // ignore: use_build_context_synchronously
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, "/shelves", (route) => false);
+                          SchedulerBinding.instance.addPostFrameCallback((_) {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, "/shelves", (route) => false);
+                          });
                         } else {
-                          // ignore: use_build_context_synchronously
-                          CustomToast.toast("ID is not correct", context);
-                          contain = false;
+                          SchedulerBinding.instance.addPostFrameCallback((_) {
+                            CustomToast.toast("ID is not correct", context);
+                            contain = false;
+                          });
                         }
                       },
                       child: const Text(

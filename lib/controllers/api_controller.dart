@@ -6,7 +6,6 @@ class ControllerApi extends ChangeNotifier {
   ModelStaffList? staffData;
   ModelNotificationList? notificationData;
 
-
   /// [changeLoadingValue] to notify that the loading value changed
   set changeLoadingValue(bool value) {
     loading = value;

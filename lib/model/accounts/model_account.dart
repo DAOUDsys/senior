@@ -6,7 +6,7 @@ class ModelAccount {
   String? password;
   String? email;
   String? userType;
-  String? ownerId;
+  dynamic ownerId;
 
 
 
@@ -15,8 +15,8 @@ class ModelAccount {
     this.name = '',
     this.password,
     this.email = '',
-    this.userType,
-    this.ownerId = '',
+    this.userType = '',
+    this.ownerId,
   });
 
   setId(String? id) => this.id = id;
@@ -24,7 +24,7 @@ class ModelAccount {
   setPass(String? password)=> this.password = password;
   setName(String? name)=> this.name = name;
   setType(String? userType)=> this.userType = userType;
-  setOwnerId(String? ownerId) => this.ownerId = ownerId;
+  setOwnerId(ownerId) => this.ownerId = ownerId;
 
 
   ModelAccount.fromSnapshot(snapshot)
@@ -34,5 +34,5 @@ class ModelAccount {
       ownerId = snapshot.data()['ownerId'];
   
   @override 
-  String toString() => 'ModelUser (ID: $id , email: $email , password: $password , name: $name , user type: $userType, ownerId: $ownerId)';
+  String toString() => 'ModelUser (ID: $id , email: $email , password: $password , name: $name , user type: $userType, ownerId: ${ownerId.toString()})';
 }

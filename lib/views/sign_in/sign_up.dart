@@ -237,7 +237,9 @@ class _NewAccountState extends State<NewAccount> {
                                             'name': thisName,
                                             'type': dropDownValue,
                                             'email': thisEmail,
-                                            'ownerId': '',
+                                            'ownerId': dropDownValue == 'Owner'
+                                                ? []
+                                                : '',
                                           };
 
                                           // ignore: duplicate_ignore
@@ -248,7 +250,8 @@ class _NewAccountState extends State<NewAccount> {
                                             auth.userData.setPass(firstValue);
                                             auth.userData.setEmail(thisEmail);
                                             auth.userData.setName(thisName);
-                                            auth.userData.setType(dropDownValue);
+                                            auth.userData
+                                                .setType(dropDownValue);
 
                                             final docUser = FirebaseFirestore
                                                 .instance
@@ -274,7 +277,6 @@ class _NewAccountState extends State<NewAccount> {
                                                   "/connect",
                                                   (route) => false);
                                             }
-                                            
 
                                             CustomToast.toast(
                                                 "your account is created",

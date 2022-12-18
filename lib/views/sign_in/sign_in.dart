@@ -8,7 +8,8 @@ class SingIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final Register auth = Provider.of<Register>(context);
     final FirebaseAuth user = FirebaseAuth.instance;
-    final FirebaseController currentUserData = Provider.of<FirebaseController>(context);
+    final FirebaseController currentUserData =
+        Provider.of<FirebaseController>(context);
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -151,17 +152,56 @@ class SingIn extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () async {
                             if (keyFrom.currentState?.validate() ?? false) {
+                              dev.log('10');
                               keyFrom.currentState!.save();
                               if (await auth.authSignIn(singin: true) != null) {
+                                dev.log('20');
                                 // auth.reset();
-                                currentUserData.performUserData(user.currentUser!.uid);
-                                Navigator.pushNamedAndRemoveUntil(
-                                    context, "/shelves", (route) => false);
+                                dev.log(user.currentUser!.uid);
+                                await currentUserData.performUserData();
+
+                                // SchedulerBinding.instance.addPostFrameCallback((_) {
+                                // Navigator.pushNamedAndRemoveUntil(
+                                //     context, "/shelves", (route) => false);
+                                //     });
+                                if (currentUserData.registeredUser.userType ==
+                                    'Employee') {
+                                  dev.log('1');
+                                  if (currentUserData.registeredUser.ownerId !=
+                                      '') {
+                                    dev.log('2');
+
+                                    SchedulerBinding.instance
+                                        .addPostFrameCallback((_) async {
+                                      await Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          "/shelves",
+                                          (route) => false);
+                                    });
+                                  } else {
+                                    dev.log('3');
+
+                                    SchedulerBinding.instance
+                                        .addPostFrameCallback((_) async {
+                                      await Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          "/connect",
+                                          (route) => false);
+                                    });
+                                  }
+                                } else {
+                                  dev.log('11');
+                                  SchedulerBinding.instance
+                                      .addPostFrameCallback((_) async {
+                                    Navigator.pushNamedAndRemoveUntil(
+                                        context, "/shelves", (route) => false);
+                                  });
+                                  dev.log('12');
+                                }
                               } else {
                                 CustomToast.toast(auth.errorMessage, context);
                               }
                             }
-
                           },
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(

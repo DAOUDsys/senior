@@ -51,13 +51,13 @@ class API extends ApiHandel {
         // we but all data as list of shelf models
         for (int i = 0; i < count; i++) {
           dataModel.add(ModelShelf(
-            id: data[i]['id'],
-            name: data[i]['name'],
-            price: data[i]['price'],
-            weight: data[i]['weight'],
-            expireDate: data[i]['expireDate'],
-            location: data[i]['location'],
-          ));
+              id: data[i]['id'],
+              name: data[i]['name'],
+              price: data[i]['price'],
+              weight: data[i]['weight'],
+              expireDate: data[i]['expireDate'],
+              location: data[i]['location'],
+              load: data[i]['load']));
         }
         shelfModel.shelf = dataModel;
       } else {

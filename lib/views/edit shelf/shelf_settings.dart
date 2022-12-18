@@ -8,12 +8,9 @@ class ShelfSettings extends StatefulWidget {
   State<ShelfSettings> createState() => _ShelfSettingsState();
 }
 
+String? name, location, weight, date, price, load;
+
 class _ShelfSettingsState extends State<ShelfSettings> {
-  String? location;
-  String? price;
-  String? weight;
-  String? name;
-  String? date;
   @override
   Widget build(BuildContext context) {
     ControllerDB db = Provider.of(context);
@@ -83,7 +80,8 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                   height: 70,
                                   width: 250,
                                   prefixIcon: const Icon(Icons.title),
-                                  initialValue: db.currentShelf!.name ?? "??",
+                                  initialValue: db.currentShelf!.name ?? "",
+                                  onChanged: (value) => {name = value},
                                 )
                               ],
                             ),
@@ -97,12 +95,13 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                       fontWeight: FontWeight.w400),
                                 ),
                                 MyTextField(
+                                  initialValue: db.currentShelf!.weight ?? "",
                                   height: 70,
                                   width: 250,
                                   prefixIcon:
                                       const Icon(Icons.line_weight_rounded),
+                                  onChanged: (p0) => weight = p0,
                                   type: TextInputType.number,
-                                  initialValue: db.currentShelf!.weight ?? "??",
                                 )
                               ],
                             ),
@@ -117,11 +116,12 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                 ),
                                 MyTextField(
                                   height: 70, width: 250,
+                                  initialValue:
+                                      db.currentShelf!.expireDate ?? "",
                                   prefixIcon: const Icon(Icons.date_range),
                                   type: TextInputType.datetime,
+                                  onChanged: (p0) => date = p0,
                                   // validError: AppValidators.isDate,
-                                  initialValue:
-                                      db.currentShelf!.expireDate ?? "??",
                                 )
                               ],
                             ),
@@ -137,9 +137,10 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                 MyTextField(
                                   height: 70,
                                   width: 250,
+                                  initialValue: db.currentShelf!.price ?? "",
                                   prefixIcon: const Icon(Icons.attach_money),
+                                  onChanged: (p0) => price = p0,
                                   type: TextInputType.number,
-                                  initialValue: db.currentShelf!.price ?? "??",
                                 )
                               ],
                             ),
@@ -155,10 +156,9 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                 MyTextField(
                                   height: 70,
                                   width: 250,
+                                  initialValue: db.currentShelf!.location ?? "",
                                   prefixIcon: const Icon(Icons.location_on),
                                   onChanged: (p0) => location = p0,
-                                  initialValue:
-                                      db.currentShelf!.location ?? "??",
                                 )
                               ],
                             ),
@@ -169,23 +169,20 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                     if (ShelfSettings.keyFrom.currentState
                                             ?.validate() ??
                                         false) {
+                                      load = db.currentShelf!.load;
                                       ModelShelf shelf = ModelShelf(
-                                        name: name,
-                                        location: location,
-                                        price: price,
-                                        weight: weight,
-                                        expireDate: date,
+                                        name: name ?? db.currentShelf!.name,
+                                        location: location ??
+                                            db.currentShelf!.location,
+                                        price: price ?? db.currentShelf!.price,
+                                        weight:
+                                            weight ?? db.currentShelf!.weight,
+                                        expireDate:
+                                            date ?? db.currentShelf!.expireDate,
                                       );
-                                      // dev.log("its valid to update now");
-                                      // db.currentShelf!.location = location;
-                                      // db.currentShelf!.price = price;
-                                      // db.currentShelf!.expireDate = date;
-                                      // db.currentShelf!.weight = weight;
-                                      // db.currentShelf!.name = name;
-                                      // await QueryShelves.db.UpdateShelfById(db.currentShelf!);
-                                      currentUserData.updateShelfData(
-                                          db.currentShelf!.id!, shelf);
 
+                                      await currentUserData.updateShelfData(
+                                          db.currentShelf!.id!, shelf);
                                       // ignore: use_build_context_synchronously
                                       CustomToast.toast(
                                           "Shelf data updated correctly",

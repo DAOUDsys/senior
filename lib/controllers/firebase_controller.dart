@@ -69,18 +69,19 @@ class FirebaseController extends ChangeNotifier {
     });
     dev.log(data.runtimeType.toString());
     for (int i = 0; i < data.length; i++) {
-      if (data[i].id == sid) {
+      if (data[i]['id'] == sid) {
         no = i;
       }
     }
-    dev.log(data[no.toString()].name);
-    dev.log(no.toString());
-    dbRef.child(no.toString()).update({
-      'expireData': shelf.expireDate,
+
+    shelf.toStrings();
+    await dbRef.child(no.toString()).update({
+      'expireDate': shelf.expireDate,
       'location': shelf.location,
       'name': shelf.name,
       'price': shelf.price,
       'weight': shelf.weight,
+      'load': shelf.load,
     });
   }
 }

@@ -188,7 +188,7 @@ class _AnalyticsState extends State<Analytics> {
                                               ),
                                               TextSpan(
                                                 text:
-                                                    "${controllerApi.analyticsData!.split(".")[0]} Items",
+                                                    "${controllerApi.analyticsData!.split(".")[0]} Items" ?? "N",
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20,

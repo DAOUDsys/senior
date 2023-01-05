@@ -12,5 +12,6 @@ class AppRoutes{
     "/newaccount": (context) => const NewAccount(),
     "/edit": (context) => const ShelfSettings(),
     "/wrapper": (context) => const Wrapper(),
+    "/analytics": (context) => const Analytics(),
   };
 }

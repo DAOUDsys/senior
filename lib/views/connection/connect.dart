@@ -10,10 +10,8 @@ class Connect extends StatelessWidget {
     final FirebaseAuth user = FirebaseAuth.instance;
     final FirebaseController currentUserData =
         Provider.of<FirebaseController>(context);
-    
 
     return Scaffold(
-      drawer: const DrawerBody(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70),
         child: AppBar(

@@ -1,5 +1,6 @@
 //import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,25 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+void requestPermissionForNotifications() async {
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await _firebaseMessaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  print('User granted permission: ${settings.authorizationStatus}');
+}
+
+String messageTitle = "Empty";
+String notificationAlert = "alert";
+
 /////////////////////////////////////////
 class _MyAppState extends State<MyApp> {
   late Future<FirebaseApp> firebaseApp;
@@ -32,7 +52,8 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
     firebaseApp = Firebase.initializeApp();
-    
+
+    // requestPermissionForNotifications();
   }
 
   // This widget is the root of your application.

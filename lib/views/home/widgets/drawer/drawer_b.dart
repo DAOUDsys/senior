@@ -32,7 +32,14 @@ class _DrawerBState extends State<DrawerB> {
           },
         ),
         //analysis and suggestions
-        DrawerBComponent(title: "Analysis and suggestions", icon: AppSvg.data),
+        if (currentUserData.registeredUser.userType == 'Owner')
+          DrawerBComponent(
+              title: "Analysis and suggestions",
+              icon: AppSvg.data,
+              onTap: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, "/analytics", (route) => false);
+              }),
         //staff management
         if (currentUserData.registeredUser.userType == 'Owner')
           DrawerBComponent(
@@ -59,8 +66,7 @@ class _DrawerBState extends State<DrawerB> {
             onTap: () {
               MaterialPageRoute<InnerPageTerm> route = MaterialPageRoute(
                   builder: (context) => const InnerPageTerm(
-                      url:
-                          "https://translate.google.com/?sl=en&tl=ar&op=translate"));
+                      url: "https://github.com/DAOUDsys/senior"));
               Navigator.push(context, route);
             }),
         //logout

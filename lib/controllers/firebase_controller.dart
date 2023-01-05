@@ -35,6 +35,8 @@ class FirebaseController extends ChangeNotifier {
     await getData('type').then((x) => registeredUser.setType(x));
     if (registeredUser.userType == 'Employee') {
       await getData('ownerId').then((x) => connected = x);
+    } else {
+      connected = 'love';
     }
     await getData('ownerId').then((x) => registeredUser.setOwnerId(x));
     registeredUser.setId(uid);
@@ -67,13 +69,13 @@ class FirebaseController extends ChangeNotifier {
       // data is the all shelf data we got from realtime database as a list of objects
       data = databaseEvent.snapshot.value;
     });
-    dev.log(data.runtimeType.toString());
+    // dev.log(data.runtimeType.toString());
     for (int i = 0; i < data.length; i++) {
       if (data[i]['id'] == sid) {
         no = i;
       }
     }
-
+    // dev.log(shelf.load!);
     shelf.toStrings();
     await dbRef.child(no.toString()).update({
       'expireDate': shelf.expireDate,
@@ -81,7 +83,7 @@ class FirebaseController extends ChangeNotifier {
       'name': shelf.name,
       'price': shelf.price,
       'weight': shelf.weight,
-      'load': shelf.load,
+      // 'load': shelf.load,
     });
   }
 }

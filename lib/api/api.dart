@@ -63,7 +63,7 @@ class API extends ApiHandel {
       } else {
         // failed // error
         shelfModel = null;
-        CustomToast.toastLess("An error occurred while fetching the data");
+        CustomToast.toastLess("An error occurred while fetching shelves data");
         // dev.log("state code == error");
       }
       return shelfModel;
@@ -108,31 +108,81 @@ class API extends ApiHandel {
   // ********************************** notification **************************************
   @override
   Future<ModelNotificationList?> getNotification() async {
+    await getData();
+    var data;
     try {
-      // req GET
-      // https://api.npoint.io/497b7c965a17b91d9167
-      Uri url = Uri.parse("https://api.npoint.io/497b7c965a17b91d9167");
-      http.Response res =
-          await http.get(url).timeout(Duration(seconds: timeOut));
-
-      ModelNotificationList? dataModel;
-
-      if (res.statusCode == 200) {
-        // 200 == success
-        // https://miro.medium.com/max/920/1*w_iicbG7L3xEQTArjHUS6g.jpeg
-
-        // the jsonDecode covert the string file that will reserved to readable json file(بفك الضغط)
-        Map<String, dynamic> json = convert.jsonDecode(res.body);
-        dataModel = ModelNotificationList.fromJson(json);
+      final dbRef = referenceDatabase.child(userId).child("notifications");
+      await dbRef.once().then((DatabaseEvent databaseEvent) async {
+        // data is the all notification data we got from realtime database as a list of objects
+        data = databaseEvent.snapshot.value;
+      });
+      List<ModelNotification> dataModel = <ModelNotification>[];
+      ModelNotificationList? notificationModel = ModelNotificationList();
+      if (data != null) {
+        // we but all data as list of shelf models
+        for (int i = 0; i < data.length; i++) {
+          dataModel.add(ModelNotification(
+              content: data[i]['content'], timeStamp: data[i]['timeStamp']));
+        }
+        notificationModel.notification = dataModel;
       } else {
         // failed // error
-        dataModel = null;
-        CustomToast.toastLess("An error occurred while fetching the data");
+        notificationModel = null;
+        CustomToast.toastLess(
+            "An error occurred while fetching notification data");
+        // dev.log("state code == error");
       }
-      return dataModel;
+
+      return notificationModel;
     } catch (error) {
       dev.log("error while get notification data");
     }
     return null;
+  }
+
+  // ********************************** analytics **************************************
+  @override
+  Future<String?> getAnalytics(int day, int month, int item, int store) async {
+    int index = 0;
+    String? result;
+    try {
+      index += item * 900 + (store - 1) * 90 + day - 1;
+      if (month == 2) {
+        index += 31;
+      } else {
+        index += 59;
+      }
+      dev.log("index: $index");
+      // req GET
+      Uri url =
+          Uri.parse("https://api.npoint.io/96cf037e80cee3792bd3/$index/sales");
+      http.Response res =
+          await http.get(url).timeout(Duration(seconds: timeOut));
+
+// 16200 object
+// 900 object for each item
+// 18 item
+//
+//       {
+//   "month":1,
+//   "dayofmonth":1,
+//   "store":1,
+//   "item_name":"pancake mix",
+//   "sales":12.886522
+//  },
+
+      if (res.statusCode == 200) {
+        // the jsonDecode covert the string file that will reserved to readable json file(بفك الضغط)
+        result = res.body;
+      } else {
+        // failed // error
+        result = "no data available";
+        CustomToast.toastLess("An error occurred while fetching the data");
+      }
+      return result; // here return what you want
+    } catch (error) {
+      dev.log("error while get analytics data data");
+    }
+    return "error while get data";
   }
 }

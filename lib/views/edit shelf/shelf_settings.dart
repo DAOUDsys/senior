@@ -118,6 +118,7 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                   height: 70, width: 250,
                                   initialValue:
                                       db.currentShelf!.expireDate ?? "",
+                                  hint: "YYYY-MM-DD",
                                   prefixIcon: const Icon(Icons.date_range),
                                   type: TextInputType.datetime,
                                   onChanged: (p0) => date = p0,
@@ -169,7 +170,7 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                     if (ShelfSettings.keyFrom.currentState
                                             ?.validate() ??
                                         false) {
-                                      load = db.currentShelf!.load;
+                                      // load = db.currentShelf!.load;
                                       ModelShelf shelf = ModelShelf(
                                         name: name ?? db.currentShelf!.name,
                                         location: location ??
@@ -179,6 +180,7 @@ class _ShelfSettingsState extends State<ShelfSettings> {
                                             weight ?? db.currentShelf!.weight,
                                         expireDate:
                                             date ?? db.currentShelf!.expireDate,
+                                        // load: load ?? db.currentShelf!.load,
                                       );
 
                                       await currentUserData.updateShelfData(

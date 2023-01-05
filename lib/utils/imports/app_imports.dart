@@ -12,10 +12,12 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import 'dart:developer' as dev;
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
+import 'package:timeago/timeago.dart' as timeago;
 import 'package:validators/validators.dart' as valid;
 import 'package:path_provider/path_provider.dart' as dir;
 
@@ -39,6 +41,7 @@ part '../../views/edit shelf/shelf_settings.dart';
 part '../../views/staff/staff_list.dart';
 part '../../views/notifications/notifications_list.dart';
 part '../../views/sign_in/warpper.dart';
+part '../../views/analytics/analytics.dart';
 // DB
 part '../database/tables/table_shelves.dart';
 part '../database/model/model_shelves.dart';
@@ -77,6 +80,7 @@ part '../../model/shelf/model_shelf.dart';
 part '../../model/shelf/model_shelf_list.dart';
 part '../../model/notifications/model_notification.dart';
 part '../../model/notifications/model_notification_list.dart';
+part '../../model/item/item.dart';
 //cards
 part '../../components/cards/shelf_card.dart';
 part '../../components/cards/staff_card.dart';
@@ -95,3 +99,4 @@ part '../../components/custom-toast/toast.dart';
 part '../../components/my richtext/my_rich_text.dart';
 part '../../utils/validators/app_validators.dart';
 part '../../components/config_material.dart';
+part '../../views/analytics/choseComponent.dart';

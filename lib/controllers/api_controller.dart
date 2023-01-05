@@ -5,13 +5,13 @@ class ControllerApi extends ChangeNotifier {
   ModelShelfList? shelfData;
   ModelStaffList? staffData;
   ModelNotificationList? notificationData;
+  String? analyticsData;
 
   /// [changeLoadingValue] to notify that the loading value changed
   set changeLoadingValue(bool value) {
     loading = value;
     notifyListeners();
   }
-
 
   // ******************* Shelf **********************
   Future<void> fetchShelfData() async {
@@ -20,9 +20,6 @@ class ControllerApi extends ChangeNotifier {
     changeLoadingValue = false;
     notifyListeners();
   }
-  
-
-
 
   // ******************* Staff **********************
   /// [fetchStaffData] fetch data from compressed json file and convert it as model
@@ -32,8 +29,6 @@ class ControllerApi extends ChangeNotifier {
     changeLoadingValue = false;
     notifyListeners();
   }
-  
-
 
   // ******************* notification **********************
   /// [fetchStaffData] fetch data from compressed json file and convert it as model
@@ -43,5 +38,13 @@ class ControllerApi extends ChangeNotifier {
     changeLoadingValue = false;
     notifyListeners();
   }
- 
+
+  // ******************* Analytics **********************
+  /// [fetchStaffData] fetch data from compressed json file and convert it as model
+  Future<void> fetchAnalytics(int day, int month, int item, int store) async {
+    changeLoadingValue = true;
+    analyticsData = await API().getAnalytics(day, month, item, store);
+    changeLoadingValue = false;
+    notifyListeners();
+  }
 }

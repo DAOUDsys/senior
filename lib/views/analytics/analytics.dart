@@ -188,7 +188,7 @@ class _AnalyticsState extends State<Analytics> {
                                               ),
                                               TextSpan(
                                                 text:
-                                                    "${controllerApi.analyticsData!.split(".")[0]} Items" ?? "N",
+                                                    "${controllerApi.analyticsData} item",
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20,
@@ -200,14 +200,6 @@ class _AnalyticsState extends State<Analytics> {
                                               ),
                                             ]),
                                           )
-
-                                    // providerApi.loading
-                                    // ? const AppLoading(
-                                    //     loading: ChoiceLoading.page,
-                                    //   )
-                                    // : providerApi.analyticsData == null
-                                    //     ? StaffList.error
-                                    //     :
                                   ]))))),
             )));
   }

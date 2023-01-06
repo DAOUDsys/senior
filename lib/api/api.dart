@@ -173,7 +173,7 @@ class API extends ApiHandel {
 
       if (res.statusCode == 200) {
         // the jsonDecode covert the string file that will reserved to readable json file(بفك الضغط)
-        result = res.body;
+        result = res.body.split(".")[0];
       } else {
         // failed // error
         result = "no data available";

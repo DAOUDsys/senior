@@ -116,13 +116,19 @@ class API extends ApiHandel {
         // data is the all notification data we got from realtime database as a list of objects
         data = databaseEvent.snapshot.value;
       });
+      List decodedData;
       List<ModelNotification> dataModel = <ModelNotification>[];
       ModelNotificationList? notificationModel = ModelNotificationList();
       if (data != null) {
+        var x = Map<String, dynamic>.from(data);
+        decodedData = x.entries.map((entry) => entry.value).toList();
         // we but all data as list of shelf models
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < decodedData.length; i++) {
           dataModel.add(ModelNotification(
-              content: data[i]['content'], timeStamp: data[i]['timeStamp']));
+              content: decodedData[i]['content'],
+              timeStamp: DateTime.fromMillisecondsSinceEpoch(
+                      int.parse(decodedData[i]['timeStamp']) * 1000)
+                  .toString()));
         }
         notificationModel.notification = dataModel;
       } else {
@@ -152,7 +158,6 @@ class API extends ApiHandel {
       } else {
         index += 59;
       }
-      dev.log("index: $index");
       // req GET
       Uri url =
           Uri.parse("https://api.npoint.io/96cf037e80cee3792bd3/$index/sales");

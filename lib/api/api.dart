@@ -130,6 +130,7 @@ class API extends ApiHandel {
                       int.parse(decodedData[i]['timeStamp']) * 1000)
                   .toString()));
         }
+        dataModel.sort((a, b) => b.timeStamp!.compareTo(a.timeStamp!));
         notificationModel.notification = dataModel;
       } else {
         // failed // error
@@ -148,30 +149,31 @@ class API extends ApiHandel {
 
   // ********************************** analytics **************************************
   @override
-  Future<String?> getAnalytics(int day, int month, int item, int store) async {
+  Future<String?> getAnalytics(int day, int month, int item) async {
     int index = 0;
     String? result;
     try {
-      index += item * 900 + (store - 1) * 90 + day - 1;
+      index += item * 90 + day - 1;
       if (month == 2) {
         index += 31;
-      } else {
+      }
+      if (month == 3) {
         index += 59;
       }
+      dev.log(index.toString());
       // req GET
       Uri url =
-          Uri.parse("https://api.npoint.io/96cf037e80cee3792bd3/$index/sales");
+          Uri.parse("https://api.npoint.io/f856655a5cebf6c55a72/$index/sales");
       http.Response res =
           await http.get(url).timeout(Duration(seconds: timeOut));
 
-// 16200 object
+// 45000 object
 // 900 object for each item
-// 18 item
+// 50 item
 //
 //       {
 //   "month":1,
 //   "dayofmonth":1,
-//   "store":1,
 //   "item_name":"pancake mix",
 //   "sales":12.886522
 //  },

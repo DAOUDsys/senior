@@ -5,5 +5,5 @@ abstract class ApiHandel {
   Future<ModelShelfList?> getShelf();
   Future<ModelStaffList?> getStaff();
   Future<ModelNotificationList?> getNotification();
-  Future<String?> getAnalytics(int day, int month, int item, int store);
+  Future<String?> getAnalytics(int day, int month, int item);
 }

@@ -41,9 +41,9 @@ class ControllerApi extends ChangeNotifier {
 
   // ******************* Analytics **********************
   /// [fetchStaffData] fetch data from compressed json file and convert it as model
-  Future<void> fetchAnalytics(int day, int month, int item, int store) async {
+  Future<void> fetchAnalytics(int day, int month, int item) async {
     changeLoadingValue = true;
-    analyticsData = await API().getAnalytics(day, month, item, store);
+    analyticsData = await API().getAnalytics(day, month, item);
     changeLoadingValue = false;
     notifyListeners();
   }

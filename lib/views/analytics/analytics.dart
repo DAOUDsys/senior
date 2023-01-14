@@ -7,8 +7,8 @@ class Analytics extends StatefulWidget {
   State<Analytics> createState() => _AnalyticsState();
 }
 
-List<String> days = [], months = [], stores = [], items = [];
-String? dayValue, monthValue, itemValue, storeValue;
+List<String> days = [], months = [], items = [];
+String? dayValue, monthValue, itemValue;
 
 class _AnalyticsState extends State<Analytics> {
   @override
@@ -18,30 +18,60 @@ class _AnalyticsState extends State<Analytics> {
     days = List.generate(31, (i) => (i + 1).toString());
     months = List.generate(3, (i) => (i + 1).toString());
     items = [
-      "pancake mix",
-      "maca tea",
-      "Seaweed topping",
-      "Apple Vinegar",
-      "Al_Jebrini fresh milk",
-      "white oatmeal ",
-      "Puffin Cookie Cake",
-      "quinoa pee",
-      "Ferrero Rocher Brownies",
-      "Qarish cheese",
-      "Golden Parmesan",
-      "Cheetos",
-      "taco sauce",
-      "Hemalaya salt",
-      "Cooking cream ",
-      "Reese’s",
-      " Cajun Seasoning",
-      "Lotus Cookies"
+      'pancake mix',
+      'maca tea',
+      'Seaweed topping',
+      'Apple Vinegar',
+      'Al_Jebrini fresh milk',
+      'white oatmeal ',
+      'Puffin Cookie Cake',
+      'quinoa pee',
+      'Ferrero Rocher Brownies',
+      'Qarish cheese',
+      'Golden Parmesan',
+      'Cheetos',
+      'taco sauce',
+      'Hemalaya salt',
+      'Cooking cream ',
+      'Reese’s',
+      ' Cajun Seasoning',
+      'Lotus Cookies',
+      'burger sauce',
+      'Oreo minis',
+      'ICE SPRITZ',
+      'mozzarella sticks',
+      'coconut milk',
+      'Garlic Mayo',
+      'tofu',
+      'Mushroom Sauce',
+      'Coconut sugar',
+      'Sun chips ',
+      'evaporated milk',
+      'sweets sambosa',
+      'Cannelloni',
+      'NESCAFÉ Classic',
+      'tortilla',
+      'pesito  sauce',
+      'barbecue sauce',
+      'Peanut butter',
+      'canned  tomato',
+      'Rice Noodles',
+      'chicken nuggets',
+      'Doritos Dip',
+      'Smoked Salami',
+      'Olive Oil',
+      'Rio Mare',
+      'Lady Fingers',
+      'Cookie Popcorn',
+      'Protein drinks',
+      'JAPANESE PANKO',
+      'Rice Vinegar ',
+      'sriracha sauce',
+      'Cola'
     ];
-    stores = List.generate(10, (i) => (i + 1).toString());
     dayValue = days[0];
     monthValue = months[0];
     itemValue = items[0];
-    storeValue = stores[0];
   }
 
   @override
@@ -138,23 +168,14 @@ class _AnalyticsState extends State<Analytics> {
                                         setState(() => itemValue = newValue!);
                                       },
                                     ),
-                                    Chose(
-                                      key: const Key('list4'),
-                                      items: stores,
-                                      value: storeValue,
-                                      title: "Store",
-                                      onChanged: (newValue) {
-                                        setState(() => storeValue = newValue!);
-                                      },
-                                    ),
                                     ElevatedButton(
                                         onPressed: () async => {
                                               await controllerApi
                                                   .fetchAnalytics(
-                                                      int.parse(dayValue!),
-                                                      int.parse(monthValue!),
-                                                      items.indexOf(itemValue!),
-                                                      int.parse(storeValue!)),
+                                                int.parse(dayValue!),
+                                                int.parse(monthValue!),
+                                                items.indexOf(itemValue!),
+                                              ),
                                             },
                                         style: ElevatedButton.styleFrom(
                                           fixedSize: const Size(150, 65),
